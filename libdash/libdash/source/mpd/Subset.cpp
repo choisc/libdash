@@ -24,7 +24,7 @@ const std::vector<uint32_t>&    Subset::Contains    ()  const
 {
     return this->subset;
 }
-void                            Subset::SetSubset   (const std::string& subset)
+void                            Subset::SetSubset   (const std::string& asubset)
 {
-    dash::helpers::String::Split(subset, ' ', this->subset);
+    dash::helpers::String::Split(asubset, ' ', this->subset);
 }

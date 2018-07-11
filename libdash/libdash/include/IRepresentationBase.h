@@ -69,7 +69,7 @@ namespace dash
                  *  media type on a grid determined by the \c \@sar attribute. \n\n
                  *  In the absence of \c \@sar width and height are specified as if the value of \c \@sar were \"1:1\".\n
                  *  \b NOTE:    The visual presentation size of the video is equal to the number of horizontal and vertical samples used for presentation 
-                 *  after encoded samples are cropped in response to encoded cropping parameters, ìoverscanî signaling, or ìpan/scanî display parameters, e.g. SEI messages.
+                 *  after encoded samples are cropped in response to encoded cropping parameters, ‚Äúoverscan‚Äù signaling, or ‚Äúpan/scan‚Äù display parameters, e.g. SEI messages.
                  *  @return     an unsigned integer
                  */
                 virtual uint32_t                            GetWidth                        () const = 0;
@@ -88,7 +88,7 @@ namespace dash
                  *  The second number specifies the vertical size of the encoded video pixels (samples) in same units as the horizontal size.
                  *  @return     a string
                  */
-                virtual std::string                         GetSar                          () const = 0;
+                virtual const std::string&                  GetSar                          () const = 0;
 
                 /**
                  *  Returns a string that specifies the output frame rate (or in the case of interlaced, half the output field rate) 
@@ -98,7 +98,7 @@ namespace dash
                  *  The frame rate is the division F/D, or F, respectively, per second (i.e. the default value of D is \"1\").
                  *  @return     a string
                  */
-                virtual std::string                         GetFrameRate                    () const = 0;
+                virtual const std::string&                  GetFrameRate                    () const = 0;
 
                 /**
                  *  Returns a string that represents an audio sampling rate. \n
@@ -106,14 +106,14 @@ namespace dash
                  *  values specifying the minimum and maximum sampling rate of the audio media component type. The values are in samples per second.
                  *  @return     a string
                  */
-                virtual std::string                         GetAudioSamplingRate            () const = 0;
+                virtual const std::string&                  GetAudioSamplingRate            () const = 0;
 
                 /**
                  *  Returns a string that specifies the MIME type of the concatenation of the Initialization Segment, if present, 
                  *  and all consecutive Media Segments in the Representation.
                  *  @return     a string
                  */
-                virtual std::string                         GetMimeType                     () const = 0;
+                virtual const std::string&                  GetMimeType                     () const = 0;
 
                 /**
                  *  Returns a reference to a vector of strings that specifies the profiles of Segments that are essential to process the Representation. 
@@ -172,7 +172,7 @@ namespace dash
                  *  The value may be equal to one of \c \"progressive\", \c \"interlaced\" and \c \"unknown\".
                  *  @return     a string
                  */
-                virtual std::string                         GetScanType                     () const = 0;
+                virtual const std::string&                  GetScanType                     () const = 0;
 
         };
     }

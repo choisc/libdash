@@ -24,39 +24,39 @@ uint32_t            TCPConnection::TCPId                    () const
 {
     return this->tcpId;
 }
-void                TCPConnection::SetTCPId                 (uint32_t tcpId)
+void                TCPConnection::SetTCPId                 (uint32_t atcpId)
 {
-    this->tcpId = tcpId;
+    this->tcpId = atcpId;
 }
 const std::string&  TCPConnection::DestinationAddress       () const
 {
     return this->dest;
 }
-void                TCPConnection::SetDestinationAddress    (const std::string& destAddress)
+void                TCPConnection::SetDestinationAddress    (const std::string& adestAddress)
 {
-    this->dest = destAddress;
+    this->dest = adestAddress;
 }
 const std::string&  TCPConnection::ConnectionOpenedTime     () const
 {
     return this->tOpen;
 }
-void                TCPConnection::SetConnectionOpenedTime  (std::string tOpen)
+void                TCPConnection::SetConnectionOpenedTime  (std::string atOpen)
 {
-    this->tOpen = tOpen;
+    this->tOpen = atOpen;
 }
 const std::string&  TCPConnection::ConnectionClosedTime     () const
 {
     return this->tClose;
 }
-void                TCPConnection::SetConnectionClosedTime  (std::string tClose)
+void                TCPConnection::SetConnectionClosedTime  (std::string atClose)
 {
-    this->tClose = tClose;
+    this->tClose = atClose;
 }
 uint64_t            TCPConnection::ConnectionTime           () const
 {
     return this->tConnect;
 }   
-void                TCPConnection::SetConnectionTime        (uint64_t tConnect)
+void                TCPConnection::SetConnectionTime        (uint64_t atConnect)
 {
-    this->tConnect = tConnect;
+    this->tConnect = atConnect;
 }

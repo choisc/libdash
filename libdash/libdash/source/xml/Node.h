@@ -53,11 +53,11 @@ namespace dash
                 const std::vector<Node *>&                  GetSubNodes         ()  const;
                 std::vector<std::string>                    GetAttributeKeys    ()  const;
                 const std::string&                          GetName             ()  const;
-                std::string                                 GetText             ()  const;
+                const std::string&                          GetText             ()  const;
                 const std::map<std::string, std::string>&   GetAttributes       ()  const;
                 int                                         GetType             ()  const;
                 void                                        SetType             (int type);
-                const std::string&                          GetAttributeValue   (std::string key) const;
+                const std::string&                          GetAttributeValue   (const std::string &key) const;
                 void                                        AddSubNode          (Node *node);
                 void                                        SetName             (const std::string &name);
                 bool                                        HasAttribute        (const std::string& name) const;

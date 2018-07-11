@@ -13,29 +13,12 @@
 
 using namespace dash::helpers;
 
-std::string                 Path::CombinePaths          (const std::string &path1, const std::string &path2)
-{
-    if(path1 == "")
-        return path2;
-    if(path2 == "")
-        return path1;
-
-    char path1Last  = path1.at(path1.size() - 1);
-    char path2First = path2.at(0);
-
-    if(path1Last == '/' && path2First == '/')
-        return path1 + path2.substr(1, path2.size());
-
-    if(path1Last != '/' && path2First != '/')
-        return path1 + "/" + path2;
-
-    return path1 + path2;
-}
 std::string                 Path::GetDirectoryPath      (const std::string &path)
 {
-    int pos = path.find_last_of('/');
-
-    return path.substr(0, pos);
+    size_t pos = path.find_last_of('/');
+    if (pos!=std::string::npos)
+        return path.substr(0, pos+1);
+    return path;
 }
 std::vector<std::string>    Path::Split                 (const std::string &s, char delim)
 {

@@ -17,8 +17,6 @@
 #include "IDownloadableChunk.h"
 #include "DownloadStateManager.h"
 #include "../helpers/SyncedBlockStream.h"
-#include "../portable/Networking.h"
-#include <curl/curl.h>
 #include "../metrics/HTTPTransaction.h"
 #include "../metrics/TCPConnection.h"
 #include "../metrics/ThroughputMeasurement.h"
@@ -70,10 +68,8 @@ namespace dash
             private:
                 std::vector<IDownloadObserver *>    observers;
                 THREAD_HANDLE                       dlThread;
-                IConnection                         *connection;
+                IConnection*                        connection;
                 helpers::SyncedBlockStream          blockStream;
-                CURL                                *curl;
-                CURLcode                            response;
                 uint64_t                            bytesDownloaded;
                 DownloadStateManager                stateManager;
 
@@ -82,13 +78,15 @@ namespace dash
 
                 static uint32_t BLOCKSIZE;
 
-                static void*    DownloadExternalConnection  (void *chunk);
-                static void*    DownloadInternalConnection  (void *chunk);
-                static size_t   CurlResponseCallback        (void *contents, size_t size, size_t nmemb, void *userp);
-                static size_t   CurlHeaderCallback          (void *headerData, size_t size, size_t nmemb, void *userdata);
-                static size_t   CurlDebugCallback           (CURL *url, curl_infotype infoType, char * data, size_t length, void *userdata);
+                static void*    DownloadExternalConnection(void *chunk);
+#ifndef NO_CURL
+                static void*    DownloadInternalConnection(void *chunk);
                 void            HandleHeaderOutCallback     ();
-                void            HandleHeaderInCallback      (std::string data);
+                void            HandleHeaderInCallback      (const std::string& data);
+                class CURLState;
+                CURLState* state;
+                friend class CURLState;
+#endif
         };
     }
 }

@@ -81,14 +81,7 @@ dash::mpd::BaseUrl*                         Node::ToBaseUrl             ()  cons
     {
         baseUrl->SetByteRange(this->GetAttributeValue("byteRange"));
     }
-    if (this->GetText() == "./")
-    {
-        baseUrl->SetUrl(this->mpdPath);
-    }
-    else 
-    {
-        baseUrl->SetUrl(this->GetText());
-    }
+    baseUrl->SetUrl(this->GetText());
 
     baseUrl->AddRawAttributes(this->attributes);
     return baseUrl;
@@ -96,7 +89,6 @@ dash::mpd::BaseUrl*                         Node::ToBaseUrl             ()  cons
 dash::mpd::Descriptor*                      Node::ToDescriptor          ()  const
 {
     dash::mpd::Descriptor *descriptor = new dash::mpd::Descriptor();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     if (this->HasAttribute("schemeIdUri"))
     {
@@ -118,7 +110,6 @@ dash::mpd::Descriptor*                      Node::ToDescriptor          ()  cons
 dash::mpd::ContentComponent*                Node::ToContentComponent    ()  const
 {
     dash::mpd::ContentComponent *contentComponent = new dash::mpd::ContentComponent();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     if (this->HasAttribute("id"))
     {
@@ -165,7 +156,7 @@ dash::mpd::ContentComponent*                Node::ToContentComponent    ()  cons
     contentComponent->AddRawAttributes(this->attributes);
     return contentComponent;
 }
-dash::mpd::URLType*                         Node::ToURLType             (HTTPTransactionType type)  const
+dash::mpd::URLType*                         Node::ToURLType             (HTTPTransactionType atype)  const
 {
     dash::mpd::URLType* urlType = new dash::mpd::URLType();
     
@@ -183,14 +174,13 @@ dash::mpd::URLType*                         Node::ToURLType             (HTTPTra
         urlType->AddAdditionalSubNode((xml::INode *) new Node(*(subNodes.at(i))));
     }
 
-    urlType->SetType(type);
+    urlType->SetType(atype);
     urlType->AddRawAttributes(this->attributes);
     return urlType;
 }
 dash::mpd::SegmentBase*                     Node::ToSegmentBase         ()  const
 {
     dash::mpd::SegmentBase* segmentBase = new dash::mpd::SegmentBase();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     SetCommonValuesForSeg(*segmentBase);
 
@@ -209,15 +199,15 @@ dash::mpd::Timeline*                        Node::ToTimeline            ()  cons
 
     if (this->HasAttribute("t"))
     {
-        timeline->SetStartTime(strtoul(this->GetAttributeValue("t").c_str(), NULL, 10));
+        timeline->SetStartTime(strtoull(this->GetAttributeValue("t").c_str(), NULL, 10));
     }
     if (this->HasAttribute("d"))
     {
-        timeline->SetDuration(strtoul(this->GetAttributeValue("d").c_str(), NULL, 10));
+        timeline->SetDuration(strtoull(this->GetAttributeValue("d").c_str(), NULL, 10));
     }
     if (this->HasAttribute("r"))
     {
-        timeline->SetRepeatCount(strtoul(this->GetAttributeValue("r").c_str(), NULL, 10));
+        timeline->SetRepeatCount(strtoull(this->GetAttributeValue("r").c_str(), NULL, 10));
     }
 
     timeline->AddRawAttributes(this->attributes);
@@ -227,7 +217,6 @@ dash::mpd::SegmentTimeline*                 Node::ToSegmentTimeline     ()  cons
 {
     dash::mpd::SegmentTimeline* segmentTimeline = new dash::mpd::SegmentTimeline();
 
-    std::vector<Node *> subNodes = this->GetSubNodes();
     for(size_t i = 0; i < subNodes.size(); i++)
     {
         if (subNodes.at(i)->GetName() == "S")
@@ -273,7 +262,6 @@ dash::mpd::SegmentURL*                      Node::ToSegmentURL          ()  cons
 dash::mpd::SegmentList*                     Node::ToSegmentList         ()  const
 {
     dash::mpd::SegmentList* segmentList = new dash::mpd::SegmentList();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     SetCommonValuesForMSeg(*segmentList);
 
@@ -304,7 +292,6 @@ dash::mpd::SegmentList*                     Node::ToSegmentList         ()  cons
 dash::mpd::SegmentTemplate*                 Node::ToSegmentTemplate     ()  const
 {
     dash::mpd::SegmentTemplate *segmentTemplate = new dash::mpd::SegmentTemplate();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     SetCommonValuesForMSeg(*segmentTemplate);
 
@@ -338,7 +325,6 @@ dash::mpd::SegmentTemplate*                 Node::ToSegmentTemplate     ()  cons
 dash::mpd::SubRepresentation*               Node::ToSubRepresentation   ()  const
 {
     dash::mpd::SubRepresentation* subRepresentation = new dash::mpd::SubRepresentation();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     SetCommonValuesForRep(*subRepresentation);
 
@@ -370,7 +356,6 @@ dash::mpd::SubRepresentation*               Node::ToSubRepresentation   ()  cons
 dash::mpd::Representation*                  Node::ToRepresentation      ()  const
 {
     dash::mpd::Representation* representation = new dash::mpd::Representation();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     SetCommonValuesForRep(*representation);
 
@@ -432,7 +417,6 @@ dash::mpd::Representation*                  Node::ToRepresentation      ()  cons
 dash::mpd::AdaptationSet*                   Node::ToAdaptationSet       ()  const
 {
     dash::mpd::AdaptationSet *adaptationSet = new dash::mpd::AdaptationSet();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     SetCommonValuesForRep(*adaptationSet);
 
@@ -587,7 +571,6 @@ dash::mpd::Subset*                          Node::ToSubset              ()  cons
 dash::mpd::Period*                          Node::ToPeriod              ()  const
 {
     dash::mpd::Period *period = new dash::mpd::Period();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     if (this->HasAttribute("xlink:href"))
     {
@@ -697,7 +680,6 @@ dash::mpd::Metrics*                         Node::ToMetrics             ()  cons
 dash::mpd::MPD*                             Node::ToMPD                 ()  const
 {
     dash::mpd::MPD *mpd = new dash::mpd::MPD();
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     if (this->HasAttribute("id"))
     {
@@ -806,18 +788,18 @@ const std::string&                          Node::GetName               ()  cons
 {
     return this->name;
 }
-void                                        Node::SetName               (const std::string &name)
+void                                        Node::SetName               (const std::string &aname)
 {
-    this->name = name;
+    this->name = aname;
 }
-const std::string&                          Node::GetAttributeValue     (std::string key)   const
+const std::string&                          Node::GetAttributeValue     (const std::string& key)   const
 {
     //return this->attributes[key];
     return this->attributes.find(key)->second;
 }
-bool                                        Node::HasAttribute          (const std::string& name) const
+bool                                        Node::HasAttribute          (const std::string& aname) const
 {
-    if(this->attributes.find(name) != this->attributes.end())
+    if(this->attributes.find(aname) != this->attributes.end())
         return true;
 
     return false;
@@ -841,8 +823,9 @@ bool                                        Node::HasText               ()  cons
 {
     return false;
 }
-std::string                                 Node::GetText               () const
+const std::string&                          Node::GetText               () const
 {
+    static const std::string empty;
     if(this->type == 3)
         return this->text;
     else
@@ -850,12 +833,12 @@ std::string                                 Node::GetText               () const
         if(this->subNodes.size())
             return this->subNodes[0]->GetText();
         else
-            return "";
+            return empty;
     }
 }
-void                                        Node::SetText               (const std::string &text)
+void                                        Node::SetText               (const std::string &atext)
 {
-    this->text = text;
+    this->text = atext;
 }
 void                                        Node::Print                 (std::ostream &stream)  const
 {
@@ -874,13 +857,12 @@ int                                         Node::GetType               ()  cons
 {
     return this->type;
 }
-void                                        Node::SetType               (int type)
+void                                        Node::SetType               (int atype)
 {
-    this->type = type;
+    this->type = atype;
 }
 void                                        Node::SetCommonValuesForRep (dash::mpd::RepresentationBase& object) const
 {
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     if (this->HasAttribute("profiles"))
     {
@@ -960,15 +942,14 @@ void                                        Node::SetCommonValuesForRep (dash::m
 }
 void                                        Node::SetCommonValuesForSeg (dash::mpd::SegmentBase& object) const
 {
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     if (this->HasAttribute("timescale"))
     {
-        object.SetTimescale(strtoul(this->GetAttributeValue("timescale").c_str(), NULL, 10));
+        object.SetTimescale(strtoull(this->GetAttributeValue("timescale").c_str(), NULL, 10));
     }
     if (this->HasAttribute("presentationTimeOffset"))
     {
-        object.SetPresentationTimeOffset(strtoul(this->GetAttributeValue("presentationTimeOffset").c_str(), NULL, 10));
+        object.SetPresentationTimeOffset(strtoull(this->GetAttributeValue("presentationTimeOffset").c_str(), NULL, 10));
     }
     if (this->HasAttribute("indexRange"))
     {
@@ -995,17 +976,16 @@ void                                        Node::SetCommonValuesForSeg (dash::m
 }
 void                                        Node::SetCommonValuesForMSeg(dash::mpd::MultipleSegmentBase& object) const
 {
-    std::vector<Node *> subNodes = this->GetSubNodes();
 
     SetCommonValuesForSeg(object);
 
     if (this->HasAttribute("duration"))
     {
-        object.SetDuration(strtoul(this->GetAttributeValue("duration").c_str(), NULL, 10));
+        object.SetDuration(strtoull(this->GetAttributeValue("duration").c_str(), NULL, 10));
     }
     if (this->HasAttribute("startNumber"))
     {
-        object.SetStartNumber(strtoul(this->GetAttributeValue("startNumber").c_str(), NULL, 10));
+        object.SetStartNumber(strtoull(this->GetAttributeValue("startNumber").c_str(), NULL, 10));
     }
 
     for(size_t i = 0; i < subNodes.size(); i++)

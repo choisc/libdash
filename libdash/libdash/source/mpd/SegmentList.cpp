@@ -36,15 +36,15 @@ const std::string&              SegmentList::GetXlinkHref       ()  const
 {
     return this->xlinkHref;
 }
-void                            SegmentList::SetXlinkHref       (const std::string& xlinkHref)
+void                            SegmentList::SetXlinkHref       (const std::string& axlinkHref)
 {
-    this->xlinkHref = xlinkHref;
+    this->xlinkHref = axlinkHref;
 }
 const std::string&              SegmentList::GetXlinkActuate    ()  const
 {
     return this->xlinkActuate;
 }
-void                            SegmentList::SetXlinkActuate    (const std::string& xlinkActuate)
+void                            SegmentList::SetXlinkActuate    (const std::string& axlinkActuate)
 {
-    this->xlinkActuate = xlinkActuate;
+    this->xlinkActuate = axlinkActuate;
 }

@@ -13,11 +13,14 @@
 
 #include "targetver.h"
 #define WIN32_LEAN_AND_MEAN
+#pragma warning(disable: 4668)
 #include <windows.h>
 
-BOOL APIENTRY DllMain( HMODULE hModule,
+//create dllmain for shared builds..
+#ifndef STATIC_DASH
+BOOL APIENTRY DllMain( HMODULE /*hModule*/,
                        DWORD  ul_reason_for_call,
-                       LPVOID lpReserved )
+                       LPVOID /*lpReserved*/ )
 {
     switch (ul_reason_for_call)
     {
@@ -29,5 +32,6 @@ BOOL APIENTRY DllMain( HMODULE hModule,
     }
     return TRUE;
 }
+#endif
 
 #endif

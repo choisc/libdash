@@ -19,13 +19,20 @@
 #include "config.h"
 
 #if defined _WIN32 || defined _WIN64
+#ifndef STATIC_DASH
+    #define DASH_EXPORT __declspec(dllexport)
 #else
-#define __declspec(dllexport)
+    #define DASH_EXPORT
+#endif
+#else
+#define DASH_EXPORT __attribute__ ((visibility ("default")))
 #define __cdecl
 #endif
 
 #include "IDASHManager.h"
 
-__declspec(dllexport) dash::IDASHManager* __cdecl CreateDashManager();
+DASH_EXPORT void __cdecl InitializeLibDash();
+DASH_EXPORT dash::IDASHManager* __cdecl CreateDashManager();
+DASH_EXPORT void __cdecl DeinitializeLibDash();
 
 #endif /* LIBDASH_H_ */

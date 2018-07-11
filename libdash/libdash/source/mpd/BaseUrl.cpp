@@ -10,6 +10,7 @@
  *****************************************************************************/
 
 #include "BaseUrl.h"
+#include "Segment.h"
 
 using namespace dash::mpd;
 
@@ -27,25 +28,25 @@ const std::string&  BaseUrl::GetUrl             ()  const
 {
     return this->url;
 }
-void                BaseUrl::SetUrl             (const std::string& url)
+void                BaseUrl::SetUrl             (const std::string& aurl)
 {
-    this->url = url;
+    this->url = aurl;
 }
 const std::string&  BaseUrl::GetServiceLocation ()  const
 {
     return this->serviceLocation;
 }
-void                BaseUrl::SetServiceLocation (const std::string& serviceLocation)
+void                BaseUrl::SetServiceLocation (const std::string& aserviceLocation)
 {
-    this->serviceLocation = serviceLocation;
+    this->serviceLocation = aserviceLocation;
 }
 const std::string&  BaseUrl::GetByteRange       ()  const
 {
     return this->byteRange;
 }
-void                BaseUrl::SetByteRange       (const std::string& byteRange)
+void                BaseUrl::SetByteRange       (const std::string& abyteRange)
 {
-    this->byteRange = byteRange;
+    this->byteRange = abyteRange;
 }
 ISegment*           BaseUrl::ToMediaSegment     (const std::vector<IBaseUrl *>& baseurls) const
 {

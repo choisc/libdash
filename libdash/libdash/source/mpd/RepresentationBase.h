@@ -35,17 +35,17 @@ namespace dash
                 const std::vector<std::string>&     GetProfiles                     () const;
                 uint32_t                            GetWidth                        () const;
                 uint32_t                            GetHeight                       () const;
-                std::string                         GetSar                          () const;
-                std::string                         GetFrameRate                    () const;
-                std::string                         GetAudioSamplingRate            () const;
-                std::string                         GetMimeType                     () const;
+                const std::string&                  GetSar                          () const;
+                const std::string&                  GetFrameRate                    () const;
+                const std::string&                  GetAudioSamplingRate            () const;
+                const std::string&                  GetMimeType                     () const;
                 const std::vector<std::string>&     GetSegmentProfiles              () const;
                 const std::vector<std::string>&     GetCodecs                       () const;
                 double                              GetMaximumSAPPeriod             () const;
                 uint8_t                             GetStartWithSAP                 () const;
                 double                              GetMaxPlayoutRate               () const;
                 bool                                HasCodingDependency             () const;
-                std::string                         GetScanType                     () const;
+                const std::string&                  GetScanType                     () const;
 
                 void    AddFramePacking                 (Descriptor *framePacking);
                 void    AddAudioChannelConfiguration    (Descriptor *audioChannelConfiguration);

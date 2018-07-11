@@ -51,7 +51,7 @@ namespace dash
                  *  Returns the text contained in this <em>XML Element</em>
                  *  @return     a string
                  */
-                virtual std::string                                 GetText             ()  const = 0;
+                virtual const std::string&                          GetText             ()  const = 0;
 
                 /**
                  *  Returns a std::map of key value / mapped value pairs corresponding to the <em>XML Attributes</em> and their values of this <em>XML Element</em>
@@ -76,7 +76,7 @@ namespace dash
                  *  @param      key     the name of the desired <em>XML Attribute</em>
                  *  @return     a reference to a string
                  */
-                virtual const std::string&                          GetAttributeValue   (std::string key) const = 0;
+                virtual const std::string&                          GetAttributeValue   (const std::string& key) const = 0;
 
                 /**
                  *  Returns a bool value determininig whether the <em>XML Attribute</em> name is contained in this <em>XML Element</em> or not.

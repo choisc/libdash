@@ -45,7 +45,7 @@ const std::string&                  Metrics::GetMetrics     ()  const
 {
     return this->metrics;
 }
-void                                Metrics::SetMetrics     (const std::string& metrics)
+void                                Metrics::SetMetrics     (const std::string& ametrics)
 {
-    this->metrics = metrics;
+    this->metrics = ametrics;
 }

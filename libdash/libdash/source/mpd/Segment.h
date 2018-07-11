@@ -42,15 +42,15 @@ namespace dash
                 bool                                HasByteRange    ();
                 dash::metrics::HTTPTransactionType  GetType         ();
 
-                void            AbsoluteURI  (std::string uri);
-                void            Host         (std::string host);
-                void            Port         (size_t port);
-                void            Path         (std::string path);
-                void            Range        (std::string range);
-                void            StartByte    (size_t startByte);
-                void            EndByte      (size_t endByte);
-                void            HasByteRange (bool hasByteRange);
-                void            SetType      (dash::metrics::HTTPTransactionType type);
+                void            SetAbsoluteURI  (const std::string& uri);
+                void            SetHost         (const std::string& host);
+                void            SetPort         (size_t port);
+                void            SetPath         (const std::string& path);
+                void            SetRange        (const std::string& range);
+                void            SetStartByte    (size_t startByte);
+                void            SetEndByte      (size_t endByte);
+                void            SetHasByteRange (bool hasByteRange);
+                void            SetType         (dash::metrics::HTTPTransactionType type);
 
             private:
                 std::string                         absoluteuri;

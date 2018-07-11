@@ -55,7 +55,7 @@ namespace dash
                  *  \b NOTE:  This may be any frequency but typically is the media clock frequency of one of the media streams (or a positive integer multiple thereof).
                  *  @return     an unsigned integer
                  */
-                virtual uint32_t            GetTimescale                ()  const = 0;
+                virtual uint64_t          GetTimescale                ()  const = 0;
 
                 /**
                  *  Returns an integer that specifies the presentation time offset of the Representation relative to the start of the Period.\n
@@ -63,7 +63,7 @@ namespace dash
                  *  If not present on any level, the value of the presentation time offset is 0. 
                  *  @return     an unsigned integer
                  */
-                virtual uint32_t            GetPresentationTimeOffset   ()  const = 0;
+                virtual uint64_t            GetPresentationTimeOffset   ()  const = 0;
 
                 /**
                  *  Returns a string that specifies the byte range that contains the Segment Index in all Media Segments of the Representation.\n

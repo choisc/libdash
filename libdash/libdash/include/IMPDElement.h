@@ -61,7 +61,7 @@ namespace dash
                  *  See the example in the class description for details.
                  *  @return     a vector of pointers to dash::xml::INode objects
                  */
-                virtual const std::vector<xml::INode *>             GetAdditionalSubNodes   ()  const = 0;
+                virtual const std::vector<xml::INode *>&            GetAdditionalSubNodes   ()  const = 0;
                 
                 /**
                  *  This method returns a map with key values and mapped values of type std::string of all <em>XML Attributes</em> of certain MPD elements. \n
@@ -69,7 +69,7 @@ namespace dash
                  *  See the example in the class description for details.
                  *  @return     a map with key values and mapped values, both of type std::string
                  */
-                virtual const std::map<std::string, std::string>    GetRawAttributes        ()  const = 0;
+                virtual const std::map<std::string, std::string>&   GetRawAttributes        ()  const = 0;
         };
     }
 }

@@ -36,63 +36,63 @@ const std::vector<IDescriptor *>&   ContentComponent::GetAccessibility  ()  cons
 {
     return (std::vector<IDescriptor *> &)this->accessibility;
 }
-void                                ContentComponent::AddAccessibity    (Descriptor *accessibility)
+void                                ContentComponent::AddAccessibity    (Descriptor *aaccessibility)
 {
-    this->accessibility.push_back(accessibility);
+    this->accessibility.push_back(aaccessibility);
 }
 const std::vector<IDescriptor *>&   ContentComponent::GetRole           ()  const
 {
     return (std::vector<IDescriptor *> &)this->role;
 }
-void                                ContentComponent::AddRole           (Descriptor *role)
+void                                ContentComponent::AddRole           (Descriptor *arole)
 {
-    this->role.push_back(role);
+    this->role.push_back(arole);
 }
 const std::vector<IDescriptor *>&   ContentComponent::GetRating         ()  const
 {
     return (std::vector<IDescriptor *> &)this->rating;
 }
-void                                ContentComponent::AddRating         (Descriptor *rating)
+void                                ContentComponent::AddRating         (Descriptor *arating)
 {
-    this->rating.push_back(rating);
+    this->rating.push_back(arating);
 }
 const std::vector<IDescriptor *>&   ContentComponent::GetViewpoint      ()  const
 {
     return (std::vector<IDescriptor *> &)this->viewpoint;
 }
-void                                ContentComponent::AddViewpoint      (Descriptor *viewpoint)
+void                                ContentComponent::AddViewpoint      (Descriptor *aviewpoint)
 {
-    this->viewpoint.push_back(viewpoint);
+    this->viewpoint.push_back(aviewpoint);
 }
 uint32_t                            ContentComponent::GetId             ()  const
 {
     return this->id;
 }
-void                                ContentComponent::SetId             (uint32_t id)
+void                                ContentComponent::SetId             (uint32_t aid)
 {
-    this->id = id;
+    this->id = aid;
 }
 const std::string&                  ContentComponent::GetLang           ()  const
 {
     return this->lang;
 }
-void                                ContentComponent::SetLang           (const std::string& lang)
+void                                ContentComponent::SetLang           (const std::string& alang)
 {
-    this->lang = lang;
+    this->lang = alang;
 }
 const std::string&                  ContentComponent::GetContentType    ()  const
 {
     return this->contentType;
 }
-void                                ContentComponent::SetContentType    (const std::string& contentType)
+void                                ContentComponent::SetContentType    (const std::string& acontentType)
 {
-    this->contentType = contentType;
+    this->contentType = acontentType;
 }
 const std::string&                  ContentComponent::GetPar            ()  const
 {
     return this->par;
 }
-void                                ContentComponent::SetPar            (const std::string& par)
+void                                ContentComponent::SetPar            (const std::string& apar)
 {
-    this->par = par;
+    this->par = apar;
 }

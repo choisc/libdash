@@ -3,11 +3,15 @@
 
 #if defined _WIN32 || defined _WIN64
 
+#pragma warning(push)
+    #pragma warning(disable: 4668)
     #define _WINSOCKAPI_
     #include <Windows.h>
+#pragma warning(pop)
+
     #define DeleteConditionVariable(cond_p) {}
 
-    typedef HANDLE THREAD_HANDLE;
+    typedef void* THREAD_HANDLE;
 
     #if defined WINXPOROLDER
         /****************************************************************************

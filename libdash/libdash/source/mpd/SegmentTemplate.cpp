@@ -10,6 +10,7 @@
  *****************************************************************************/
 
 #include "SegmentTemplate.h"
+#include "Segment.h"
 
 using namespace dash::mpd;
 using namespace dash::metrics;
@@ -29,117 +30,171 @@ const std::string&  SegmentTemplate::Getmedia                       ()  const
 {
     return this->media;
 }
-void                SegmentTemplate::SetMedia                       (const std::string& media)
+void                SegmentTemplate::SetMedia                       (const std::string& amedia)
 {
-    this->media = media;
+    this->media = amedia;
 }
 const std::string&  SegmentTemplate::Getindex                       ()  const
 {
     return this->index;
 }
-void                SegmentTemplate::SetIndex                       (const std::string& index)
+void                SegmentTemplate::SetIndex                       (const std::string& aindex)
 {
-    this->index = index;
+    this->index = aindex;
 }
 const std::string&  SegmentTemplate::Getinitialization              ()  const
 {
     return this->initialization;
 }
-void                SegmentTemplate::SetInitialization              (const std::string& initialization)
+void                SegmentTemplate::SetInitialization              (const std::string& ainitialization)
 {
-    this->initialization = initialization;
+    this->initialization = ainitialization;
 }
 const std::string&  SegmentTemplate::GetbitstreamSwitching          ()  const
 {
     return this->bitstreamSwitching;
 }
-void                SegmentTemplate::SetBitstreamSwitching          (const std::string& bitstreamSwitching)
+void                SegmentTemplate::SetBitstreamSwitching          (const std::string& abitstreamSwitching)
 {
-    this->bitstreamSwitching = bitstreamSwitching;
+    this->bitstreamSwitching = abitstreamSwitching;
 }
-ISegment*           SegmentTemplate::ToInitializationSegment        (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth) const
+ISegment*           SegmentTemplate::ToInitializationSegment        (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth) const
 {
     return ToSegment(this->initialization, baseurls, representationID, bandwidth, dash::metrics::InitializationSegment);
 }
-ISegment*           SegmentTemplate::ToBitstreamSwitchingSegment    (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth) const
+ISegment*           SegmentTemplate::ToBitstreamSwitchingSegment    (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth) const
 {
     return ToSegment(this->bitstreamSwitching, baseurls, representationID, bandwidth, dash::metrics::BitstreamSwitchingSegment);
 }
-ISegment*           SegmentTemplate::GetMediaSegmentFromNumber      (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t number) const
+ISegment*           SegmentTemplate::GetMediaSegmentFromNumber      (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t number) const
 {
     return ToSegment(this->media, baseurls, representationID, bandwidth, dash::metrics::MediaSegment, number);
 }
-ISegment*           SegmentTemplate::GetIndexSegmentFromNumber      (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t number) const
+ISegment*           SegmentTemplate::GetIndexSegmentFromNumber      (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t number) const
 {
     return ToSegment(this->index, baseurls, representationID, bandwidth, dash::metrics::IndexSegment, number);
 }
-ISegment*           SegmentTemplate::GetMediaSegmentFromTime        (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t time) const
+ISegment*           SegmentTemplate::GetMediaSegmentFromTime        (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t time) const
 {
     return ToSegment(this->media, baseurls, representationID, bandwidth, dash::metrics::MediaSegment, 0, time);
 }
-ISegment*           SegmentTemplate::GetIndexSegmentFromTime        (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t time) const
+ISegment*           SegmentTemplate::GetIndexSegmentFromTime        (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t time) const
 {
     return ToSegment(this->index, baseurls, representationID, bandwidth, dash::metrics::IndexSegment, 0, time);
 }
-std::string         SegmentTemplate::ReplaceParameters              (const std::string& uri, const std::string& representationID, uint32_t bandwidth, uint32_t number, uint32_t time) const
+std::string         SegmentTemplate::ReplaceParameters              (const std::string& uri, const std::string& representationID, uint64_t bandwidth, uint64_t number, uint64_t time) const
 {
-    std::vector<std::string> chunks;
-    std::string replacedUri = "";
-
-    dash::helpers::String::Split(uri, '$', chunks);
-
-    if (chunks.size() > 1) 
+    //see dash spec part 1 @ 5.3.9.4.4 Template-based Segment URL construction 
+    std::string replacedUri;
+    int cpos = 0;
+    for (;;)
     {
-        for(size_t i = 0; i < chunks.size(); i++) 
+        size_t pos = uri.find('$', cpos);
+        if (pos == std::string::npos)
         {
-            if ( chunks.at(i) == "RepresentationID") {
-                chunks.at(i) = representationID;
-                continue;
-            }
-
-            if (chunks.at(i).find("Bandwidth") == 0)
+            //add the leftovers.
+            replacedUri.append(uri.data() + cpos);
+            break;
+        }
+        replacedUri.append(uri.data() + cpos, pos - cpos);
+        size_t end = uri.find('$', pos + 1);
+        if (end == std::string::npos)
+        {
+            //no terminating $?
+            //just add it as is. 
+            //technically the uri is corrupted, and the whole representation should be ignored!
+            replacedUri.append(uri.data() + pos);
+            break;
+        }
+        pos++;
+        size_t id_len = end - pos;
+        if (id_len == 0)
+        {
+            //id_len==0 means we got $$
+            replacedUri += '$';
+        }
+        else if (uri.compare(pos, id_len, "RepresentationID") == 0) 
+        {
+            replacedUri.append(representationID);
+        }
+        else
+        {
+            //Check for formatter.
+            uint64_t value;
+            int64_t width = 1; //width = 1 if not defined.
+            bool valid = true;
+            size_t fmt = uri.find('%', pos);
+            if ((fmt != std::string::npos) && (end>fmt))
             {
-                FormatChunk(chunks.at(i), bandwidth);
-                continue;
+                //technically format string should be "%0[width]d"
+                //not validating hoping for it to be correct.
+                id_len = fmt - pos;
+                fmt++;
+                if (uri[fmt] == '0') fmt++;
+                if (uri[end - 1] == 'd')
+                {
+                    width = 0;
+                    //TODO: this could be done better too. (validation and conversion from string to number)
+                    for (int t = fmt; t < end - 1; t++)
+                    {
+                        width *= 10;
+                        if ((uri[t] >= '0') && (uri[t] <= '9'))
+                        {
+                            width += uri[t] - '0';
+                        }
+                        else
+                        {
+                            //corrupted formatter.
+                            valid = false;
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    //corrupted formatter.
+                    valid = false;
+                }
             }
-
-            if (chunks.at(i).find("Number") == 0)
+            if (uri.compare(pos, id_len, "Number") == 0)
             {
-                FormatChunk(chunks.at(i), number);
-                continue;
+                value = number;
             }
-
-            if (chunks.at(i).find("Time") == 0)
+            else if (uri.compare(pos, id_len, "Bandwidth") == 0)
             {
-                FormatChunk(chunks.at(i), time);
-                continue;
+                value = bandwidth;
+            }
+            else if (uri.compare(pos, id_len, "Time") == 0)
+            {
+                value = time;
+            }
+            else
+            {
+                //Corrupted!
+                valid = false;
+            }
+            if (valid)
+            {
+                //TODO: replace this with something better.
+                //ie. convert number to string with specified minimum digits with zero left fill..
+                char result[64];
+                char fmtstring[64];
+                sprintf(fmtstring, "%%0%llullu", width);
+                sprintf(result, fmtstring, value);
+                replacedUri.append(result);
+            }
+            else
+            {
+                //technically the uri is corrupted, and the whole representation should be ignored!
+                //just add the identifier as is..
+                replacedUri.append(uri.data() + pos - 1, end - pos + 2);
             }
         }
-
-        for(size_t i = 0; i < chunks.size(); i++) 
-            replacedUri += chunks.at(i);
-
-        return replacedUri;
+        cpos = end + 1;
     }
-    else
-    {
-        replacedUri = uri;
-        return replacedUri;
-    }
+    return replacedUri;
 }
-void                SegmentTemplate::FormatChunk                    (std::string& uri, uint32_t number) const
-{
-    char formattedNumber [50];
-    size_t pos = 0;
-    std::string formatTag = "%01d";
-
-    if ( (pos = uri.find("%0")) != std::string::npos)
-        formatTag = uri.substr(pos).append("d");
-
-    sprintf(formattedNumber, formatTag.c_str(), number);
-    uri = formattedNumber;
-}
-ISegment*           SegmentTemplate::ToSegment                      (const std::string& uri, const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, HTTPTransactionType type, uint32_t number, uint32_t time) const
+ISegment*           SegmentTemplate::ToSegment                      (const std::string& uri, const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, HTTPTransactionType type, uint64_t number, uint64_t time) const
 {
     Segment *seg = new Segment();
 

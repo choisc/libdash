@@ -29,33 +29,33 @@ const std::string&  SegmentURL::GetMediaURI     ()  const
 {
     return this->mediaURI;
 }
-void                SegmentURL::SetMediaURI     (const std::string& mediaURI)
+void                SegmentURL::SetMediaURI     (const std::string& amediaURI)
 {
-    this->mediaURI = mediaURI;
+    this->mediaURI = amediaURI;
 }
 const std::string&  SegmentURL::GetMediaRange   ()  const
 {
     return this->mediaRange;
 }
-void                SegmentURL::SetMediaRange   (const std::string& mediaRange)
+void                SegmentURL::SetMediaRange   (const std::string& amediaRange)
 {
-    this->mediaRange = mediaRange;
+    this->mediaRange = amediaRange;
 }
 const std::string&  SegmentURL::GetIndexURI     ()  const
 {
     return this->indexURI;
 }
-void                SegmentURL::SetIndexURI     (const std::string& indexURI)
+void                SegmentURL::SetIndexURI     (const std::string& aindexURI)
 {
-    this->indexURI = indexURI;
+    this->indexURI = aindexURI;
 }
 const std::string&  SegmentURL::GetIndexRange   ()  const
 {
     return this->indexRange;
 }
-void                SegmentURL::SetIndexRange   (const std::string& indexRange)
+void                SegmentURL::SetIndexRange   (const std::string& aindexRange)
 {
-    this->indexRange = indexRange;
+    this->indexRange = aindexRange;
 }
 ISegment*           SegmentURL::ToMediaSegment  (const std::vector<IBaseUrl *>& baseurls) const
 {

@@ -41,135 +41,135 @@ const std::vector<IDescriptor*>&    RepresentationBase::GetFramePacking         
 {
     return (std::vector<IDescriptor*> &) this->framePacking;
 }
-void                                RepresentationBase::AddFramePacking                 (Descriptor *framePacking) 
+void                                RepresentationBase::AddFramePacking                 (Descriptor *aframePacking) 
 {
-    this->framePacking.push_back(framePacking);
+    this->framePacking.push_back(aframePacking);
 }
 const std::vector<IDescriptor*>&    RepresentationBase::GetAudioChannelConfiguration    () const
 {
     return (std::vector<IDescriptor*> &) this->audioChannelConfiguration;
 }
-void                                RepresentationBase::AddAudioChannelConfiguration    (Descriptor *audioChannelConfiguration)
+void                                RepresentationBase::AddAudioChannelConfiguration    (Descriptor *aaudioChannelConfiguration)
 {
-    this->audioChannelConfiguration.push_back(audioChannelConfiguration);
+    this->audioChannelConfiguration.push_back(aaudioChannelConfiguration);
 }
 const std::vector<IDescriptor*>&    RepresentationBase::GetContentProtection            () const
 {
     return (std::vector<IDescriptor*> &) this->contentProtection;
 }
-void                                RepresentationBase::AddContentProtection            (Descriptor *contentProtection)
+void                                RepresentationBase::AddContentProtection            (Descriptor *acontentProtection)
 {
-    this->contentProtection.push_back(contentProtection);
+    this->contentProtection.push_back(acontentProtection);
 }
 const std::vector<std::string>&     RepresentationBase::GetProfiles                     () const
 {
     return this->profiles;
 }
-void                                RepresentationBase::SetProfiles                     (const std::string& profiles)
+void                                RepresentationBase::SetProfiles                     (const std::string& aprofiles)
 {
-    dash::helpers::String::Split(profiles, ',', this->profiles);
+    dash::helpers::String::Split(aprofiles, ',', this->profiles);
 }
 uint32_t                            RepresentationBase::GetWidth                        () const
 {
     return this->width;
 }
-void                                RepresentationBase::SetWidth                        (uint32_t width)
+void                                RepresentationBase::SetWidth                        (uint32_t awidth)
 {
-    this->width = width;
+    this->width = awidth;
 }
 uint32_t                            RepresentationBase::GetHeight                       () const
 {
     return this->height;
 }
-void                                RepresentationBase::SetHeight                       (uint32_t height)
+void                                RepresentationBase::SetHeight                       (uint32_t aheight)
 {
-    this->height = height;
+    this->height = aheight;
 }
-std::string                         RepresentationBase::GetSar                          () const
+const std::string&                  RepresentationBase::GetSar                          () const
 {
     return this->sar;
 }
-void                                RepresentationBase::SetSar                          (const std::string& sar)
+void                                RepresentationBase::SetSar                          (const std::string& asar)
 {
-    this->sar = sar;
+    this->sar = asar;
 }
-std::string                         RepresentationBase::GetFrameRate                    () const
+const std::string&                  RepresentationBase::GetFrameRate                    () const
 {
     return this->frameRate;
 }
-void                                RepresentationBase::SetFrameRate                    (const std::string& frameRate)
+void                                RepresentationBase::SetFrameRate                    (const std::string& aframeRate)
 {
-    this->frameRate = frameRate;
+    this->frameRate = aframeRate;
 }
-std::string                         RepresentationBase::GetAudioSamplingRate            () const
+const std::string&                  RepresentationBase::GetAudioSamplingRate            () const
 {
     return this->audioSamplingRate;
 }
-void                                RepresentationBase::SetAudioSamplingRate            (const std::string& audioSamplingRate)
+void                                RepresentationBase::SetAudioSamplingRate            (const std::string& aaudioSamplingRate)
 {
-    this->audioSamplingRate = audioSamplingRate;
+    this->audioSamplingRate = aaudioSamplingRate;
 }
-std::string                         RepresentationBase::GetMimeType                     () const
+const std::string&                  RepresentationBase::GetMimeType                     () const
 {
     return this->mimeType;
 }
-void                                RepresentationBase::SetMimeType                     (const std::string& mimeType)
+void                                RepresentationBase::SetMimeType                     (const std::string& amimeType)
 {
-    this->mimeType = mimeType;
+    this->mimeType = amimeType;
 }
 const std::vector<std::string>&     RepresentationBase::GetSegmentProfiles              () const
 {
     return this->segmentProfiles;
 }
-void                                RepresentationBase::SetSegmentProfiles              (const std::string& segmentProfiles)
+void                                RepresentationBase::SetSegmentProfiles              (const std::string& asegmentProfiles)
 {
-    dash::helpers::String::Split(segmentProfiles, ',', this->segmentProfiles);
+    dash::helpers::String::Split(asegmentProfiles, ',', this->segmentProfiles);
 }
 const std::vector<std::string>&     RepresentationBase::GetCodecs                       () const
 {
     return this->codecs;
 }
-void                                RepresentationBase::SetCodecs                       (const std::string& codecs)
+void                                RepresentationBase::SetCodecs                       (const std::string& acodecs)
 {
-    dash::helpers::String::Split(codecs, ',', this->codecs);
+    dash::helpers::String::Split(acodecs, ',', this->codecs);
 }
 double                              RepresentationBase::GetMaximumSAPPeriod             () const
 {
     return this->maximumSAPPeriod;
 }
-void                                RepresentationBase::SetMaximumSAPPeriod             (double maximumSAPPeriod)
+void                                RepresentationBase::SetMaximumSAPPeriod             (double amaximumSAPPeriod)
 {
-    this->maximumSAPPeriod = maximumSAPPeriod;
+    this->maximumSAPPeriod = amaximumSAPPeriod;
 }
 uint8_t                             RepresentationBase::GetStartWithSAP                 () const
 {
     return this->startWithSAP;
 }
-void                                RepresentationBase::SetStartWithSAP                 (uint8_t startWithSAP)
+void                                RepresentationBase::SetStartWithSAP                 (uint8_t astartWithSAP)
 {
-    this->startWithSAP = startWithSAP;
+    this->startWithSAP = astartWithSAP;
 }
 double                              RepresentationBase::GetMaxPlayoutRate               () const
 {
     return this->maxPlayoutRate;
 }
-void                                RepresentationBase::SetMaxPlayoutRate               (double maxPlayoutRate)
+void                                RepresentationBase::SetMaxPlayoutRate               (double amaxPlayoutRate)
 {
-    this->maxPlayoutRate = maxPlayoutRate;
+    this->maxPlayoutRate = amaxPlayoutRate;
 }
 bool                                RepresentationBase::HasCodingDependency             () const
 {
     return this->codingDependency;
 }
-void                                RepresentationBase::SetCodingDependency             (bool codingDependency)
+void                                RepresentationBase::SetCodingDependency             (bool acodingDependency)
 {
-    this->codingDependency = codingDependency;
+    this->codingDependency = acodingDependency;
 }
-std::string                         RepresentationBase::GetScanType                     () const
+const std::string&                  RepresentationBase::GetScanType                     () const
 {
     return this->scanType;
 }
-void                                RepresentationBase::SetScanType                     (const std::string& scanType)
+void                                RepresentationBase::SetScanType                     (const std::string& ascanType)
 {
-    this->scanType = scanType;
+    this->scanType = ascanType;
 }

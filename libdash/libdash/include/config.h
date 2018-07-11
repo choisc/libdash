@@ -16,13 +16,16 @@
 #ifndef CONFIG_H_
 #define CONFIG_H_
 
-/********************************
- * Pragmas
- ********************************/
-#pragma warning( disable : 4250 ) // virtual inheritance
+#ifdef _WIN32
+#define WIN32_LEAN_AND_MEAN
+#pragma warning(push)
+#pragma warning(disable: 4668)
+#include <winsdkver.h>
+#endif
 /********************************
  * Standard includes
  ********************************/
+
 #include <stdlib.h>
 #include <string>
 #include <sstream>
@@ -33,5 +36,11 @@
 #include <iostream>
 #include <cstdlib>
 #include <string.h>
+#ifdef _WIN32
+#pragma warning(pop)
+#endif
+
+ //Disable the dominance warning since libdash is full of them.
+#pragma warning( disable : 4250 ) // virtual inheritance
 
 #endif /* CONFIG_H_ */

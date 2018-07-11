@@ -26,8 +26,8 @@ namespace dash
                 AbstractMPDElement          ();
                 virtual ~AbstractMPDElement ();
 
-                virtual const std::vector<xml::INode *>             GetAdditionalSubNodes   ()  const;
-                virtual const std::map<std::string, std::string>    GetRawAttributes        ()  const;
+                virtual const std::vector<xml::INode *>&            GetAdditionalSubNodes   ()  const;
+                virtual const std::map<std::string, std::string>&   GetRawAttributes        ()  const;
                 virtual void                                        AddAdditionalSubNode    (xml::INode * node);
                 virtual void                                        AddRawAttributes        (std::map<std::string, std::string> attributes);
 

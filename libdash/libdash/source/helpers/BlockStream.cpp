@@ -49,7 +49,7 @@ const block_t*  BlockStream::GetBytes               (uint32_t len)
         return NULL;
 
     block_t *block = AllocBlock(len);
-    this->BlockQueueGetBytes(block->data, block->len);
+    this->BlockQueueGetBytes(block->data, (uint32_t)block->len);
 
     this->length -= len;
 
@@ -61,7 +61,7 @@ size_t          BlockStream::GetBytes               (uint8_t *data, size_t len)
     if(len > this->length)
         len = (size_t) this->length;
 
-    this->BlockQueueGetBytes(data, len);
+    this->BlockQueueGetBytes(data, (uint32_t)len);
 
     this->length -= len;
 
@@ -73,7 +73,7 @@ size_t          BlockStream::PeekBytes              (uint8_t *data, size_t len)
     if(len > this->length)
         len = (size_t) this->length;
 
-    this->BlockQueuePeekBytes(data, len, 0);
+    this->BlockQueuePeekBytes(data, (uint32_t)len, 0);
 
     return len;
 }
@@ -86,7 +86,7 @@ size_t          BlockStream::PeekBytes              (uint8_t *data, size_t len, 
     if (offset + len > this->length)
         len = (size_t) (this->length - offset);
 
-    this->BlockQueuePeekBytes(data, len, offset);
+    this->BlockQueuePeekBytes(data, (uint32_t)len, offset);
 
     return len;
 }
@@ -138,7 +138,7 @@ bool            BlockStream::BlockQueueGetBytes     (uint8_t *data, uint32_t len
         else
         {
             memcpy(data + pos, block->data, block->len);
-            pos += block->len;
+            pos += (uint32_t)block->len;
 
             DeleteBlock(block);
             this->blockqueue.pop_front();
@@ -150,7 +150,7 @@ bool            BlockStream::BlockQueueGetBytes     (uint8_t *data, uint32_t len
 bool            BlockStream::BlockQueuePeekBytes    (uint8_t *data, uint32_t len, size_t offset)
 {
     uint32_t pos = 0;
-    int      cnt = 0;
+    size_t cnt = 0;
 
     const block_t *block = NULL;
 
@@ -165,7 +165,7 @@ bool            BlockStream::BlockQueuePeekBytes    (uint8_t *data, uint32_t len
         else
         {
             memcpy(data + pos, block->data + offset, block->len - offset);
-            pos += block->len;
+            pos += (uint32_t)block->len;
         }
 
         cnt++;
@@ -176,7 +176,7 @@ bool            BlockStream::BlockQueuePeekBytes    (uint8_t *data, uint32_t len
 uint8_t         BlockStream::ByteAt                 (uint64_t position) const
 {
     if(position > this->length)
-        return -1;
+        return (uint8_t)-1;
 
     uint64_t pos = 0;
 
@@ -190,14 +190,14 @@ uint8_t         BlockStream::ByteAt                 (uint64_t position) const
             pos += block->len;
     }
 
-    return -1;
+    return (uint8_t)-1;
 }
 const block_t*  BlockStream::ToBlock                ()
 {
     if(this->length > std::numeric_limits<size_t>::max())
         return NULL;
 
-    return BlockStream::GetBytes((size_t)this->length);
+    return BlockStream::GetBytes((uint32_t)this->length);
 }
 void            BlockStream::Clear                  ()
 {

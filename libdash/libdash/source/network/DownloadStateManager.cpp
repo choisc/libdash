@@ -35,21 +35,21 @@ DownloadState   DownloadStateManager::State         () const
 
     return ret;
 }
-void            DownloadStateManager::State         (DownloadState state)
+void            DownloadStateManager::State         (DownloadState astate)
 {
     EnterCriticalSection(&this->stateLock);
 
-    this->state = state;
+    this->state = astate;
 
     this->Notify();
     WakeAllConditionVariable(&this->stateChanged);
     LeaveCriticalSection(&this->stateLock);
 }
-void            DownloadStateManager::WaitState     (DownloadState state) const
+void            DownloadStateManager::WaitState     (DownloadState astate) const
 {
     EnterCriticalSection(&this->stateLock);
 
-    while(this->state != state)
+    while(this->state != astate)
         SleepConditionVariableCS(&this->stateChanged, &this->stateLock, INFINITE);
 
     LeaveCriticalSection(&this->stateLock);
@@ -74,11 +74,11 @@ void            DownloadStateManager::Detach        (IDownloadObserver *observer
 {
     EnterCriticalSection(&this->stateLock);
 
-    uint32_t pos = -1;
+    int32_t pos = -1;
 
     for(size_t i = 0; i < this->observers.size(); i++)
         if(this->observers.at(i) == observer)
-            pos = i;
+            pos = (int32_t)i;
 
     if(pos != -1)
         this->observers.erase(this->observers.begin() + pos);

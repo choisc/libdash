@@ -14,16 +14,26 @@
 using namespace dash::xml;
 using namespace dash::helpers;
 
-DOMParser::DOMParser    (std::string url) :
-           url          (url),
-           reader       (NULL),
-           root         (NULL)
+DOMParser::DOMParser(std::string url) :
+    url(url),
+    reader(NULL),
+    root(NULL),
+    mData(NULL),
+    mSize(0)
+{
+    this->Init();
+}
+DOMParser::DOMParser(const char* data, unsigned int size,const char* url) :
+    url(url),
+    reader(NULL),
+    root(NULL),
+    mData(data),
+    mSize(size)
 {
     this->Init();
 }
 DOMParser::~DOMParser   ()
 {
-    xmlCleanupParser();
     delete(this->root);
 }
 
@@ -33,12 +43,19 @@ Node*   DOMParser::GetRootNode              () const
 }
 bool    DOMParser::Parse                    ()
 {
-    this->reader = xmlReaderForFile(this->url.c_str(), NULL, 0);
+    if (mData)
+    {
+        this->reader = xmlReaderForMemory(mData, mSize, this->url.c_str(), NULL, 0);
+    }
+    else
+    {
+        this->reader = xmlReaderForFile(this->url.c_str(), NULL, 0);
+    }
 
     if(this->reader == NULL)
         return false;
 
-    if(xmlTextReaderRead(this->reader)) 
+    if (xmlTextReaderRead(this->reader))
         this->root = this->ProcessNode();
 
     if(this->root == NULL)
@@ -108,6 +125,7 @@ Node*   DOMParser::ProcessNode              ()
            Node *node = new Node();
            node->SetType(type);
            node->SetText(text);
+           xmlFree((char*)text);
            return node;
        }
     }

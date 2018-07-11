@@ -54,63 +54,63 @@ ISegmentBase*                               Representation::GetSegmentBase      
 {
     return this->segmentBase;
 }
-void                                        Representation::SetSegmentBase              (SegmentBase *segmentBase)
+void                                        Representation::SetSegmentBase              (SegmentBase *asegmentBase)
 {
-    this->segmentBase = segmentBase;
+    this->segmentBase = asegmentBase;
 }
 ISegmentList*                               Representation::GetSegmentList              () const
 {
     return this->segmentList;
 }
-void                                        Representation::SetSegmentList              (SegmentList *segmentList)
+void                                        Representation::SetSegmentList              (SegmentList *asegmentList)
 {
-    this->segmentList = segmentList;
+    this->segmentList = asegmentList;
 }
 ISegmentTemplate*                           Representation::GetSegmentTemplate          () const
 {
     return this->segmentTemplate;
 }
-void                                        Representation::SetSegmentTemplate          (SegmentTemplate *segmentTemplate) 
+void                                        Representation::SetSegmentTemplate          (SegmentTemplate *asegmentTemplate) 
 {
-    this->segmentTemplate = segmentTemplate;
+    this->segmentTemplate = asegmentTemplate;
 }
 const std::string&                          Representation::GetId                       () const
 {
     return this->id;
 }
-void                                        Representation::SetId                       (const std::string &id)
+void                                        Representation::SetId                       (const std::string &aid)
 {
-    this->id = id;
+    this->id = aid;
 }
 uint32_t                                    Representation::GetBandwidth                () const
 {
     return this->bandwidth;
 }
-void                                        Representation::SetBandwidth                (uint32_t bandwidth)
+void                                        Representation::SetBandwidth                (uint32_t abandwidth)
 {
-    this->bandwidth = bandwidth;
+    this->bandwidth = abandwidth;
 }
 uint32_t                                    Representation::GetQualityRanking           () const
 {
     return this->qualityRanking;
 }
-void                                        Representation::SetQualityRanking           (uint32_t qualityRanking)
+void                                        Representation::SetQualityRanking           (uint32_t aqualityRanking)
 {
-    this->qualityRanking = qualityRanking;
+    this->qualityRanking = aqualityRanking;
 }
 const std::vector<std::string>&             Representation::GetDependencyId             () const
 {
     return this->dependencyId;
 }
-void                                        Representation::SetDependencyId             (const std::string &dependencyId)
+void                                        Representation::SetDependencyId             (const std::string &adependencyId)
 {
-    dash::helpers::String::Split(dependencyId, ' ', this->dependencyId);
+    dash::helpers::String::Split(adependencyId, ' ', this->dependencyId);
 }
 const std::vector<std::string>&             Representation::GetMediaStreamStructureId   () const
 {
     return this->mediaStreamStructureId;
 }
-void                                        Representation::SetMediaStreamStructureId   (const std::string& mediaStreamStructureId)
+void                                        Representation::SetMediaStreamStructureId   (const std::string& amediaStreamStructureId)
 {
-    dash::helpers::String::Split(mediaStreamStructureId, ' ', this->mediaStreamStructureId);
+    dash::helpers::String::Split(amediaStreamStructureId, ' ', this->mediaStreamStructureId);
 }

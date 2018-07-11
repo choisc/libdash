@@ -30,31 +30,31 @@ const ISegmentTimeline *    MultipleSegmentBase::GetSegmentTimeline     ()  cons
 {
     return (ISegmentTimeline *) this->segmentTimeline;
 }
-void                        MultipleSegmentBase::SetSegmentTimeline     (SegmentTimeline *segmentTimeline)
+void                        MultipleSegmentBase::SetSegmentTimeline     (SegmentTimeline *asegmentTimeline)
 {
-    this->segmentTimeline = segmentTimeline;
+    this->segmentTimeline = asegmentTimeline;
 }
 const IURLType*             MultipleSegmentBase::GetBitstreamSwitching  ()  const
 {
     return this->bitstreamSwitching;
 }
-void                        MultipleSegmentBase::SetBitstreamSwitching  (URLType *bitstreamSwitching)
+void                        MultipleSegmentBase::SetBitstreamSwitching  (URLType *abitstreamSwitching)
 {
-    this->bitstreamSwitching = bitstreamSwitching;
+    this->bitstreamSwitching = abitstreamSwitching;
 }
-uint32_t                    MultipleSegmentBase::GetDuration            ()  const
+uint64_t                    MultipleSegmentBase::GetDuration            ()  const
 {
     return this->duration;
 }
-void                        MultipleSegmentBase::SetDuration            (uint32_t duration)
+void                        MultipleSegmentBase::SetDuration            (uint64_t aduration)
 {
-    this->duration = duration;
+    this->duration = aduration;
 }
-uint32_t                    MultipleSegmentBase::GetStartNumber         ()  const
+uint64_t                    MultipleSegmentBase::GetStartNumber         ()  const
 {
     return this->startNumber;
 }
-void                        MultipleSegmentBase::SetStartNumber         (uint32_t startNumber)
+void                        MultipleSegmentBase::SetStartNumber         (uint64_t astartNumber)
 {
-    this->startNumber = startNumber;
+    this->startNumber = astartNumber;
 }

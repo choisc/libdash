@@ -72,7 +72,7 @@ namespace dash
                  *                                  \b NOTE:    If there is no identifier \em \$bandwidth\$ in the template then this parameter will not be used and can be set to 0.
                  *  @return     a pointer to a dash::mpd::ISegment object
                  */
-                virtual ISegment*           ToInitializationSegment     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth) const = 0;
+                virtual ISegment*           ToInitializationSegment     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth) const = 0;
 
                 /**
                  *  Returns a pointer to a dash::mpd::ISegment object that represents a Bitstream Switching Segment and can be downloaded.
@@ -84,7 +84,7 @@ namespace dash
                  *                                  \b NOTE:    If there is no identifier \em \$bandwidth\$ in the template then this parameter will not be used and can be set to 0.
                  *  @return     a pointer to a dash::mpd::ISegment object
                  */
-                virtual ISegment*           ToBitstreamSwitchingSegment (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth) const = 0;
+                virtual ISegment*           ToBitstreamSwitchingSegment (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth) const = 0;
 
                 /**
                  *  Returns a pointer to a dash::mpd::ISegment object that represents a Media Segment and can be downloaded.
@@ -98,7 +98,7 @@ namespace dash
                  *                                  This integer will be formated according to a possibly contained format tag in the \em \$Number\$ identifier.
                  *  @return     a pointer to a dash::mpd::ISegment object
                  */
-                virtual ISegment*           GetMediaSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t number) const = 0;
+                virtual ISegment*           GetMediaSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t number) const = 0;
 
                 /**
                  *  Returns a pointer to a dash::mpd::ISegment object that represents a Index Segment and can be downloaded.
@@ -112,7 +112,7 @@ namespace dash
                  *                                  This integer will be formated according to a possibly contained format tag in the \em \$Number\$ identifier.
                  *  @return     a pointer to a dash::mpd::ISegment object
                  */
-                virtual ISegment*           GetIndexSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t number) const = 0;
+                virtual ISegment*           GetIndexSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t number) const = 0;
 
                 /**
                  *  Returns a pointer to a dash::mpd::ISegment object that represents a Media Segment and can be downloaded.
@@ -126,7 +126,7 @@ namespace dash
                  *                                  This integer will be formated according to a possibly contained format tag in the \em \$Time\$ identifier.
                  *  @return     a pointer to a dash::mpd::ISegment object
                  */
-                virtual ISegment*           GetMediaSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t time) const = 0;
+                virtual ISegment*           GetMediaSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t time) const = 0;
 
                 /**
                  *  Returns a pointer to a dash::mpd::ISegment object that represents a Index Segment and can be downloaded.
@@ -140,7 +140,13 @@ namespace dash
                  *                                  This integer will be formated according to a possibly contained format tag in the \em \$Time\$ identifier.
                  *  @return     a pointer to a dash::mpd::ISegment object
                  */
-                virtual ISegment*           GetIndexSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t time) const = 0;
+                virtual ISegment*           GetIndexSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t time) const = 0;
+
+                /*
+                This is the method that all the Get*Segment* methods above call, just to simplify things i'll expose it.
+                */
+                virtual ISegment*           ToSegment(const std::string& uri, const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, dash::metrics::HTTPTransactionType type, uint64_t number = 0, uint64_t time = 0) const = 0;
+
         };
     }
 }

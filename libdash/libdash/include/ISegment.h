@@ -34,25 +34,25 @@ namespace dash
                  *  This method allows you to specify an absolute URI for this Segment
                  *  @param      uri     a string representing an URI 
                  */
-                virtual void    AbsoluteURI  (std::string uri)   = 0;
+                virtual void    SetAbsoluteURI  (const std::string& uri)   = 0;
 
                 /**
                  *  This method allows you to specify a host for this Segment
                  *  @param      host    a string representing an host
                  */
-                virtual void    Host         (std::string host)  = 0;
+                virtual void    SetHost         (const std::string& host)  = 0;
 
                 /**
                  *  This method allows you to specify a port for this Segment
                  *  @param      port    an integer representing a portnumber
                  */
-                virtual void    Port         (size_t port)       = 0;
+                virtual void    SetPort         (size_t port)       = 0;
 
                 /**
                  *  This method allows you to specify a path for this Segment
                  *  @param      path    a string representing a path
                  */
-                virtual void    Path         (std::string path)  = 0;
+                virtual void    SetPath         (const std::string& path)  = 0;
 
                 /**
                  *  This method allows you to specify a byte range for this Segment
@@ -60,25 +60,25 @@ namespace dash
                                         <em>The byte range shall be expressed and formatted as a \c byte-range-spec as defined in RFC 2616, Clause 14.35.1.
                                         It is restricted to a single expression identifying a contiguous range of bytes.</em>
                  */
-                virtual void    Range        (std::string range) = 0;
+                virtual void    SetRange        (const std::string& range) = 0;
 
                 /**
                  *  This method allows you to specify the start byte for this Segment
                  *  @param      startByte   an integer representing the start byte
                  */
-                virtual void    StartByte    (size_t startByte)  = 0;
+                virtual void    SetStartByte    (size_t startByte)  = 0;
 
                 /**
                  *  This method allows you to specify the end byte for this Segment
                  *  @param      endByte     an integer representing the end byte
                  */
-                virtual void    EndByte      (size_t endByte)    = 0;
+                virtual void    SetEndByte      (size_t endByte)    = 0;
 
                 /**
                  *  This method allows you to specify whether this Segment has a byte range or not
                  *  @param      hasByteRange    a bool value, \c true to specify that this Segment has a byte range, \c false otherwise
                  */
-                virtual void    HasByteRange (bool hasByteRange) = 0;
+                virtual void    SetHasByteRange (bool hasByteRange) = 0;
         };
     }
 }

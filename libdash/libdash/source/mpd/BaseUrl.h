@@ -14,7 +14,6 @@
 
 #include "config.h"
 
-#include "Segment.h"
 #include "IBaseUrl.h"
 #include "AbstractMPDElement.h"
 
@@ -22,6 +21,7 @@ namespace dash
 {
     namespace mpd
     {
+        class ISegment;
         class BaseUrl : public IBaseUrl, public AbstractMPDElement
         {
             public:

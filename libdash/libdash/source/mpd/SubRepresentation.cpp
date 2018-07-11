@@ -25,31 +25,31 @@ uint32_t                        SubRepresentation::GetLevel             ()  cons
 {
     return this->level;
 }
-void                            SubRepresentation::SetLevel             (uint32_t level) 
+void                            SubRepresentation::SetLevel             (uint32_t alevel) 
 {
-    this->level = level;
+    this->level = alevel;
 }
 const std::vector<uint32_t>&    SubRepresentation::GetDependencyLevel   ()  const
 {
     return this->dependencyLevel;
 }
-void                            SubRepresentation::SetDependencyLevel   (const std::string& dependencyLevel)
+void                            SubRepresentation::SetDependencyLevel   (const std::string& adependencyLevel)
 {
-    dash::helpers::String::Split(dependencyLevel, ' ', this->dependencyLevel);
+    dash::helpers::String::Split(adependencyLevel, ' ', this->dependencyLevel);
 }
 uint32_t                        SubRepresentation::GetBandWidth         ()  const
 {
     return this->bandWidth;
 }
-void                            SubRepresentation::SetBandWidth         (uint32_t bandWidth)
+void                            SubRepresentation::SetBandWidth         (uint32_t abandWidth)
 {
-    this->bandWidth = bandWidth;
+    this->bandWidth = abandWidth;
 }
 const std::vector<std::string>& SubRepresentation::GetContentComponent  ()  const
 {
     return this->contentComponent;
 }
-void                            SubRepresentation::SetContentComponent  (const std::string& contentComponent)
+void                            SubRepresentation::SetContentComponent  (const std::string& acontentComponent)
 {
-    dash::helpers::String::Split(contentComponent, ' ', this->contentComponent);
+    dash::helpers::String::Split(acontentComponent, ' ', this->contentComponent);
 }

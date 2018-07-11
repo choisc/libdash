@@ -29,39 +29,39 @@ const std::string&  ProgramInformation::GetTitle                ()  const
 {
     return this->title;
 }
-void                ProgramInformation::SetTitle                (const std::string& title)
+void                ProgramInformation::SetTitle                (const std::string& aTitle)
 {
-    this->title = title;
+    this->title = aTitle;
 }
 const std::string&  ProgramInformation::GetSource               ()  const
 {
     return this->source;
 }
-void                ProgramInformation::SetSource               (const std::string& source)
+void                ProgramInformation::SetSource               (const std::string& aSource)
 {
-    this->source = source;
+    this->source = aSource;
 }
 const std::string&  ProgramInformation::GetCopyright            ()  const
 {
     return this->copyright;
 }
-void                ProgramInformation::SetCopyright            (const std::string& copyright)
+void                ProgramInformation::SetCopyright            (const std::string& aCopyright)
 {
-    this->copyright = copyright;
+    this->copyright = aCopyright;
 }
 const std::string&  ProgramInformation::GetLang                 ()  const
 {
     return this->lang;
 }
-void                ProgramInformation::SetLang                 (const std::string& lang)
+void                ProgramInformation::SetLang                 (const std::string& aLang)
 {
-    this->lang = lang;
+    this->lang = aLang;
 }
 const std::string&  ProgramInformation::GetMoreInformationURL   ()  const
 {
     return this->moreInformationURL;
 }
-void                ProgramInformation::SetMoreInformationURL   (const std::string& moreInfoURL)
+void                ProgramInformation::SetMoreInformationURL   (const std::string& aMoreInfoURL)
 {
-    this->moreInformationURL = moreInfoURL;
+    this->moreInformationURL = aMoreInfoURL;
 }

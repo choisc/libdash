@@ -32,47 +32,47 @@ const IURLType*     SegmentBase::GetInitialization          ()  const
 {
     return this->initialization;
 }
-void                SegmentBase::SetInitialization          (URLType *initialization)
+void                SegmentBase::SetInitialization          (URLType *ainitialization)
 {
-    this->initialization = initialization;
+    this->initialization = ainitialization;
 }
 const IURLType*     SegmentBase::GetRepresentationIndex     ()  const
 {
     return this->representationIndex;
 }
-void                SegmentBase::SetRepresentationIndex     (URLType *representationIndex)
+void                SegmentBase::SetRepresentationIndex     (URLType *arepresentationIndex)
 {
-    this->representationIndex = representationIndex;
+    this->representationIndex = arepresentationIndex;
 }
-uint32_t            SegmentBase::GetTimescale               ()  const
+uint64_t            SegmentBase::GetTimescale               ()  const
 {
     return this->timescale;
 }
-void                SegmentBase::SetTimescale               (uint32_t timescale)
+void                SegmentBase::SetTimescale               (uint64_t atimescale)
 {
-    this->timescale = timescale;
+    this->timescale = atimescale;
 }
-uint32_t            SegmentBase::GetPresentationTimeOffset  ()  const
+uint64_t            SegmentBase::GetPresentationTimeOffset  ()  const
 {
     return this->presentationTimeOffset;
 }
-void                SegmentBase::SetPresentationTimeOffset  (uint32_t presentationTimeOffset)
+void                SegmentBase::SetPresentationTimeOffset  (uint64_t apresentationTimeOffset)
 {
-    this->presentationTimeOffset = presentationTimeOffset;
+    this->presentationTimeOffset = apresentationTimeOffset;
 }
 const std::string&  SegmentBase::GetIndexRange              ()  const
 {
     return this->indexRange;
 }
-void                SegmentBase::SetIndexRange              (const std::string& indexRange)
+void                SegmentBase::SetIndexRange              (const std::string& aindexRange)
 {
-    this->indexRange = indexRange;
+    this->indexRange = aindexRange;
 }
 bool                SegmentBase::HasIndexRangeExact         ()  const
 {
     return this->indexRangeExact;
 }
-void                SegmentBase::SetIndexRangeExact         (bool indexRangeExact)
+void                SegmentBase::SetIndexRangeExact         (bool aindexRangeExact)
 {
-    this->indexRangeExact = indexRangeExact;
+    this->indexRangeExact = aindexRangeExact;
 }

@@ -10,6 +10,7 @@
  *****************************************************************************/
 
 #include "Segment.h"
+#include "../helpers/Uri.h"
 
 using namespace dash::mpd;
 using namespace dash::helpers;
@@ -28,36 +29,40 @@ Segment::~Segment   ()
 {
 }
 
-bool                Segment::Init               (const std::vector<IBaseUrl *>& baseurls, const std::string &uri, const std::string &range, HTTPTransactionType type)
+bool                Segment::Init               (const std::vector<IBaseUrl *>& baseurls, const std::string &uri, const std::string &arange, HTTPTransactionType atype)
 {
-    std::string host        = "";
-    size_t      port        = 80;
-    std::string path        = "";
-    size_t      startByte   = 0;
-    size_t      endByte     = 0;
+    std::string thost        = "";
+    size_t      tport        = 80;
+    std::string tpath        = "";
+    size_t      tstartByte   = 0;
+    size_t      tendByte     = 0;
 
     this->absoluteuri = "";
 
-    for(size_t i = 0; i < baseurls.size(); i++)
-        this->absoluteuri = Path::CombinePaths(this->absoluteuri, baseurls.at(i)->GetUrl());
-
-    this->absoluteuri = Path::CombinePaths(this->absoluteuri, uri);
-
-    if (uri != "" && dash::helpers::Path::GetHostPortAndPath(this->absoluteuri, host, port, path))
+    Uri base;
+    for (size_t i = 0; i < baseurls.size(); i++)
     {
-        this->host = host;
-        this->port = port;
-        this->path = path;
+        base.resolve(baseurls.at(i)->GetUrl());
+    }
+    base.resolve(uri);
 
-        if (range != "" && dash::helpers::Path::GetStartAndEndBytes(range, startByte, endByte))
+    this->absoluteuri = base.toString();
+
+    if (uri != "" && dash::helpers::Path::GetHostPortAndPath(this->absoluteuri, thost, tport, tpath))
+    {
+        this->host = thost;
+        this->port = tport;
+        this->path = tpath;
+
+        if (arange != "" && dash::helpers::Path::GetStartAndEndBytes(arange, tstartByte, tendByte))
         {
-            this->range         = range;
+            this->range         = arange;
             this->hasByteRange  = true;
-            this->startByte     = startByte;
-            this->endByte       = endByte;
+            this->startByte     = tstartByte;
+            this->endByte       = tendByte;
         }
 
-        this->type = type;
+        this->type = atype;
 
         return true;
     }
@@ -96,43 +101,43 @@ bool                Segment::HasByteRange       ()
 {
     return this->hasByteRange;
 }
-void                Segment::AbsoluteURI        (std::string uri)
+void                Segment::SetAbsoluteURI        (const std::string& uri)
 {
     this->absoluteuri = uri;
 }
-void                Segment::Host               (std::string host)
+void                Segment::SetHost               (const std::string& ahost)
 {
-    this->host = host;
+    this->host = ahost;
 }
-void                Segment::Port               (size_t port)
+void                Segment::SetPort               (size_t aport)
 {
-    this->port = port;
+    this->port = aport;
 }
-void                Segment::Path               (std::string path)
+void                Segment::SetPath               (const std::string& apath)
 {
-    this->path = path;
+    this->path = apath;
 }
-void                Segment::Range              (std::string range)
+void                Segment::SetRange              (const std::string& arange)
 {
-    this->range = range;
+    this->range = arange;
 }
-void                Segment::StartByte          (size_t startByte)
+void                Segment::SetStartByte          (size_t astartByte)
 {
-    this->startByte = startByte;
+    this->startByte = astartByte;
 }
-void                Segment::EndByte            (size_t endByte)
+void                Segment::SetEndByte            (size_t aendByte)
 {
-    this->endByte = endByte;
+    this->endByte = aendByte;
 }
-void                Segment::HasByteRange       (bool hasByteRange)
+void                Segment::SetHasByteRange       (bool ahasByteRange)
 {
-    this->hasByteRange = hasByteRange;
+    this->hasByteRange = ahasByteRange;
 }
 HTTPTransactionType Segment::GetType            ()
 {
     return this->type;
 }
-void                Segment::SetType            (HTTPTransactionType type)
+void                Segment::SetType            (HTTPTransactionType atype)
 {
-    this->type = type;
+    this->type = atype;
 }

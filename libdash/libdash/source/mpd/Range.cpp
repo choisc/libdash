@@ -26,15 +26,15 @@ const std::string&  Range::GetStarttime ()  const
 {
     return this->starttime;
 }
-void                Range::SetStarttime (const std::string& starttime)
+void                Range::SetStarttime (const std::string& astarttime)
 {
-    this->starttime = starttime;
+    this->starttime = astarttime;
 }
 const std::string&  Range::GetDuration  ()  const
 {
     return this->duration;
 }
-void                Range::SetDuration  (const std::string& duration)
+void                Range::SetDuration  (const std::string& aduration)
 {
-    this->duration = duration;
+    this->duration = aduration;
 }

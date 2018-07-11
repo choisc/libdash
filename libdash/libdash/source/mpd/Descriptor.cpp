@@ -25,15 +25,15 @@ const std::string&  Descriptor::GetSchemeIdUri  ()  const
 {
     return this->schemeIdUri;
 }
-void                Descriptor::SetSchemeIdUri  (const std::string& schemeIdUri) 
+void                Descriptor::SetSchemeIdUri  (const std::string& aschemeIdUri) 
 {
-    this->schemeIdUri = schemeIdUri;
+    this->schemeIdUri = aschemeIdUri;
 }
 const std::string&  Descriptor::GetValue        ()  const
 {
     return this->value;
 }
-void                Descriptor::SetValue        (const std::string& value) 
+void                Descriptor::SetValue        (const std::string& avalue) 
 {
-    this->value = value;
+    this->value = avalue;
 }

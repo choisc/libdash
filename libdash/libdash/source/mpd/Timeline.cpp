@@ -23,27 +23,27 @@ Timeline::~Timeline   ()
 {
 }
 
-uint32_t    Timeline::GetStartTime     ()  const
+uint64_t    Timeline::GetStartTime     ()  const
 {
     return this->startTime;
 }
-void        Timeline::SetStartTime     (uint32_t startTime) 
+void        Timeline::SetStartTime     (uint64_t astartTime)
 {
-    this->startTime = startTime;
+    this->startTime = astartTime;
 }
-uint32_t    Timeline::GetDuration      ()  const
+uint64_t    Timeline::GetDuration      ()  const
 {
     return this->duration;
 }
-void        Timeline::SetDuration      (uint32_t duration) 
+void        Timeline::SetDuration      (uint64_t aduration)
 {
-    this->duration = duration;
+    this->duration = aduration;
 }
-uint32_t    Timeline::GetRepeatCount   ()  const
+uint64_t    Timeline::GetRepeatCount   ()  const
 {
     return this->repeatCount;
 }
-void        Timeline::SetRepeatCount   (uint32_t repeatCount)
+void        Timeline::SetRepeatCount   (uint64_t arepeatCount)
 {
-    this->repeatCount = repeatCount;
+    this->repeatCount = arepeatCount;
 }

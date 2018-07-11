@@ -15,7 +15,7 @@ using namespace dash::helpers;
 
 uint32_t    Time::GetCurrentUTCTimeInSec   ()
 {
-    return mktime(Time::GetCurrentUTCTime());
+    return (uint32_t)mktime(Time::GetCurrentUTCTime());
 }
 std::string Time::GetCurrentUTCTimeStr   ()
 {

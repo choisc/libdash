@@ -1,21 +1,48 @@
 #include "MultiThreading.h"
 
+
+#if defined _WIN32 || defined _WIN64
+#include <process.h>
+struct ThreadParams
+{
+    void *(*start_routine) (void *);
+    void *arg;
+    HANDLE handle;
+};
+static unsigned __stdcall THREAD_START_ROUTINE(void* lpThreadParameter)
+{
+    struct ThreadParams tp = *(struct ThreadParams*)(lpThreadParameter);    
+    /*void* result=*/tp.start_routine(tp.arg);    
+    return 0;//yes. The return value is not used.
+}
+#endif
 THREAD_HANDLE   CreateThreadPortable    (void *(*start_routine) (void *), void *arg)
 {
     #if defined _WIN32 || defined _WIN64
-        return CreateThread (0, 0, (LPTHREAD_START_ROUTINE)start_routine, (LPVOID)arg, 0, 0);
+        struct ThreadParams* tp = (struct ThreadParams*)malloc(sizeof(struct ThreadParams));
+        tp->start_routine = start_routine;
+        tp->arg = arg;
+        tp->handle = (HANDLE)_beginthreadex(NULL, 0, THREAD_START_ROUTINE, (void*)tp, 0, nullptr);
+        if (tp->handle ==NULL)
+        {
+            free(tp);
+            return NULL;
+        }
+        return tp;
     #else
         THREAD_HANDLE th = (THREAD_HANDLE)malloc(sizeof(pthread_t));
     
         if (!th)
         {
             std::cerr << "Error allocating thread." << std::endl;
+            free(th);
             return NULL;
         }
 
         if(int err = pthread_create(th, NULL, start_routine, arg))
         {
             std::cerr << strerror(err) << std::endl;
+            free(th);
             return NULL;
         }
         return th;
@@ -23,10 +50,18 @@ THREAD_HANDLE   CreateThreadPortable    (void *(*start_routine) (void *), void *
 }
 void            DestroyThreadPortable   (THREAD_HANDLE th)
 {
-    #if !defined _WIN32 && !defined _WIN64
-        if(th)
-            free(th);
+    if(th)
+    {
+    #if defined _WIN32 || defined _WIN64
+        struct ThreadParams* tp = (struct ThreadParams*)(th);
+        WaitForSingleObject(tp->handle, INFINITE);
+        CloseHandle(tp->handle);
+    #else
+        void* retval;
+        pthread_join(*th,&retval);
     #endif
+        free(th);
+    }
 }
 
 /****************************************************************************

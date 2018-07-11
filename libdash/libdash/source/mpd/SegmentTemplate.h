@@ -32,12 +32,13 @@ namespace dash
                 const std::string&  Getindex                ()  const;
                 const std::string&  Getinitialization       ()  const;
                 const std::string&  GetbitstreamSwitching   ()  const;
-                ISegment*           ToInitializationSegment     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth) const;
-                ISegment*           ToBitstreamSwitchingSegment (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth) const;
-                ISegment*           GetMediaSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t number) const;
-                ISegment*           GetIndexSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t number) const;
-                ISegment*           GetMediaSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t time) const;
-                ISegment*           GetIndexSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, uint32_t time) const;
+                ISegment*           ToInitializationSegment     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth) const;
+                ISegment*           ToBitstreamSwitchingSegment (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth) const;
+                ISegment*           GetMediaSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t number) const;
+                ISegment*           GetIndexSegmentFromNumber   (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t number) const;
+                ISegment*           GetMediaSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t time) const;
+                ISegment*           GetIndexSegmentFromTime     (const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth, uint64_t time) const;
+                ISegment*           ToSegment                   (const std::string& uri, const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint64_t bandwidth,dash::metrics::HTTPTransactionType type, uint64_t number = 0, uint64_t time = 0) const;
 
                 void    SetMedia                (const std::string& media);
                 void    SetIndex                (const std::string& index);
@@ -45,10 +46,7 @@ namespace dash
                 void    SetBitstreamSwitching   (const std::string& bitstreamSwichting);
 
             private:
-                std::string ReplaceParameters   (const std::string& uri, const std::string& representationID, uint32_t bandwidth, uint32_t number, uint32_t time) const;
-                void        FormatChunk         (std::string& uri, uint32_t number) const;
-                ISegment*   ToSegment           (const std::string& uri, const std::vector<IBaseUrl *>& baseurls, const std::string& representationID, uint32_t bandwidth, 
-                                                 dash::metrics::HTTPTransactionType type, uint32_t number = 0, uint32_t time = 0) const;
+                std::string ReplaceParameters   (const std::string& uri, const std::string& representationID, uint64_t bandwidth, uint64_t number, uint64_t time) const;
 
                 std::string media;
                 std::string index;

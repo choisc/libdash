@@ -23,11 +23,11 @@ AbstractMPDElement::~AbstractMPDElement     ()
         delete(this->additionalSubNodes.at(i));
 }
 
-const std::vector<INode *>                  AbstractMPDElement::GetAdditionalSubNodes   ()  const
+const std::vector<INode *>&                 AbstractMPDElement::GetAdditionalSubNodes   ()  const
 {
     return this->additionalSubNodes;
 }
-const std::map<std::string, std::string>    AbstractMPDElement::GetRawAttributes        ()  const
+const std::map<std::string, std::string>&   AbstractMPDElement::GetRawAttributes        ()  const
 {
     return this->rawAttributes;
 }

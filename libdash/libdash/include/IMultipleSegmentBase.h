@@ -51,14 +51,14 @@ namespace dash
                  *  For more details refer to section 5.3.9.5.3. of <em>ISO/IEC 23009-1, Part 1, 2012</em>.
                  *  @return     an unsigned integer
                  */
-                virtual uint32_t                    GetDuration             ()  const = 0;
+                virtual uint64_t                    GetDuration             ()  const = 0;
 
                 /**
                  *  Returns a integer specifying the number of the first Media Segment in this Representation in the Period.\n
                  *  For more details refer to 5.3.9.5.3. of <em>ISO/IEC 23009-1, Part 1, 2012</em>.
                  *  @return     an unsigned integer
                  */
-                virtual uint32_t                    GetStartNumber          ()  const = 0;
+                virtual uint64_t                    GetStartNumber          ()  const = 0;
         };
     }
 }

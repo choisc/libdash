@@ -28,21 +28,21 @@ const std::string&  URLType::GetSourceURL   ()  const
 {
     return this->sourceURL;
 }
-void                URLType::SetSourceURL   (const std::string& sourceURL)
+void                URLType::SetSourceURL   (const std::string& asourceURL)
 {
-    this->sourceURL = sourceURL;
+    this->sourceURL = asourceURL;
 }
 const std::string&  URLType::GetRange       ()  const
 {
     return this->range;
 }
-void                URLType::SetRange       (const std::string& range)
+void                URLType::SetRange       (const std::string& arange)
 {
-    this->range = range;
+    this->range = arange;
 }
-void                URLType::SetType        (HTTPTransactionType type)
+void                URLType::SetType        (HTTPTransactionType atype)
 {
-    this->type = type;
+    this->type = atype;
 }
 ISegment*           URLType::ToSegment      (const std::vector<IBaseUrl *>& baseurls) const
 {

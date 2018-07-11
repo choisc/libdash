@@ -67,201 +67,201 @@ const std::vector<IDescriptor *>&       AdaptationSet::GetAccessibility         
 {
     return (std::vector<IDescriptor *> &) this->accessibility;
 }
-void                                    AdaptationSet::AddAccessibity                   (Descriptor *accessibility)
+void                                    AdaptationSet::AddAccessibity                   (Descriptor *aAccessibility)
 {
-    this->accessibility.push_back(accessibility);
+    this->accessibility.push_back(aAccessibility);
 }
 const std::vector<IDescriptor *>&       AdaptationSet::GetRole                          ()  const
 {
     return (std::vector<IDescriptor *> &) this->role;
 }
-void                                    AdaptationSet::AddRole                          (Descriptor *role)
+void                                    AdaptationSet::AddRole                          (Descriptor *aRole)
 {
-    this->role.push_back(role);
+    this->role.push_back(aRole);
 }
 const std::vector<IDescriptor *>&       AdaptationSet::GetRating                        ()  const
 {
     return (std::vector<IDescriptor *> &) this->rating;
 }
-void                                    AdaptationSet::AddRating                        (Descriptor *rating)
+void                                    AdaptationSet::AddRating                        (Descriptor *aRating)
 {
-    this->rating.push_back(rating);
+    this->rating.push_back(aRating);
 }
 const std::vector<IDescriptor *>&       AdaptationSet::GetViewpoint                     ()  const
 {
     return (std::vector<IDescriptor *> &) this->viewpoint;
 }
-void                                    AdaptationSet::AddViewpoint                     (Descriptor *viewpoint)
+void                                    AdaptationSet::AddViewpoint                     (Descriptor *aViewpoint)
 {
-    this->viewpoint.push_back(viewpoint);
+    this->viewpoint.push_back(aViewpoint);
 }
 const std::vector<IContentComponent *>& AdaptationSet::GetContentComponent              ()  const
 {
     return (std::vector<IContentComponent *> &) this->contentComponent;
 }
-void                                    AdaptationSet::AddContentComponent              (ContentComponent *contentComponent)
+void                                    AdaptationSet::AddContentComponent              (ContentComponent *aContentComponent)
 {
-    this->contentComponent.push_back(contentComponent);
+    this->contentComponent.push_back(aContentComponent);
 }
 const std::vector<IBaseUrl *>&          AdaptationSet::GetBaseURLs                      ()  const
 {
     return (std::vector<IBaseUrl *> &) this->baseURLs;
 }
-void                                    AdaptationSet::AddBaseURL                       (BaseUrl *baseUrl)
+void                                    AdaptationSet::AddBaseURL                       (BaseUrl *aBaseUrl)
 {
-    this->baseURLs.push_back(baseUrl);
+    this->baseURLs.push_back(aBaseUrl);
 }
 ISegmentBase*                           AdaptationSet::GetSegmentBase                   ()  const
 {
     return this->segmentBase;
 }
-void                                    AdaptationSet::SetSegmentBase                   (SegmentBase *segmentBase)
+void                                    AdaptationSet::SetSegmentBase                   (SegmentBase *aSegmentBase)
 {
-    this->segmentBase = segmentBase;
+    this->segmentBase = aSegmentBase;
 }
 ISegmentList*                           AdaptationSet::GetSegmentList                   ()  const
 {
     return this->segmentList;
 }
-void                                    AdaptationSet::SetSegmentList                   (SegmentList *segmentList)
+void                                    AdaptationSet::SetSegmentList                   (SegmentList *aSegmentList)
 {
-    this->segmentList = segmentList;
+    this->segmentList = aSegmentList;
 }
 ISegmentTemplate*                       AdaptationSet::GetSegmentTemplate               ()  const
 {
     return this->segmentTemplate;
 }
-void                                    AdaptationSet::SetSegmentTemplate               (SegmentTemplate *segmentTemplate) 
+void                                    AdaptationSet::SetSegmentTemplate               (SegmentTemplate *aSegmentTemplate) 
 {
-    this->segmentTemplate = segmentTemplate;
+    this->segmentTemplate = aSegmentTemplate;
 }
 const std::vector<IRepresentation *>&   AdaptationSet::GetRepresentation                ()  const
 {
     return (std::vector<IRepresentation *> &) this->representation;
 }
-void                                    AdaptationSet::AddRepresentation                (Representation *representation)
+void                                    AdaptationSet::AddRepresentation                (Representation *aRepresentation)
 {
-    this->representation.push_back(representation);
+    this->representation.push_back(aRepresentation);
 }
 const std::string&                      AdaptationSet::GetXlinkHref                     ()  const
 {
     return this->xlinkHref;
 }
-void                                    AdaptationSet::SetXlinkHref                     (const std::string& xlinkHref)
+void                                    AdaptationSet::SetXlinkHref                     (const std::string& aXlinkHref)
 {
-    this->xlinkHref = xlinkHref;
+    this->xlinkHref = aXlinkHref;
 }
 const std::string&                      AdaptationSet::GetXlinkActuate                  ()  const
 {
     return this->xlinkActuate;
 }
-void                                    AdaptationSet::SetXlinkActuate                  (const std::string& xlinkActuate)
+void                                    AdaptationSet::SetXlinkActuate                  (const std::string& aXlinkActuate)
 {
-    this->xlinkActuate = xlinkActuate;
+    this->xlinkActuate = aXlinkActuate;
 }
 uint32_t                                AdaptationSet::GetId                            ()  const
 {
     return this->id;
 }
-void                                    AdaptationSet::SetId                            (uint32_t id)
+void                                    AdaptationSet::SetId                            (uint32_t aId)
 {
-    this->id = id;
+    this->id = aId;
 }
 uint32_t                                AdaptationSet::GetGroup                         ()  const
 {
     return this->group;
 }
-void                                    AdaptationSet::SetGroup                         (uint32_t group)
+void                                    AdaptationSet::SetGroup                         (uint32_t aGroup)
 {
-    this->group = group;
+    this->group = aGroup;
 }
 const std::string&                      AdaptationSet::GetLang                          ()  const
 {
     return this->lang;
 }
-void                                    AdaptationSet::SetLang                          (const std::string& lang)
+void                                    AdaptationSet::SetLang                          (const std::string& aLang)
 {
-    this->lang = lang;
+    this->lang = aLang;
 }
 const std::string&                      AdaptationSet::GetContentType                   ()  const
 {
     return this->contentType;
 }
-void                                    AdaptationSet::SetContentType                   (const std::string& contentType)
+void                                    AdaptationSet::SetContentType                   (const std::string& aContentType)
 {
-    this->contentType = contentType;
+    this->contentType = aContentType;
 }
 const std::string&                      AdaptationSet::GetPar                           ()  const
 {
     return this->par;
 }
-void                                    AdaptationSet::SetPar                           (const std::string& par)
+void                                    AdaptationSet::SetPar                           (const std::string& aPar)
 {
-    this->par = par;
+    this->par = aPar;
 }
 uint32_t                                AdaptationSet::GetMinBandwidth                  ()  const
 {
     return this->minBandwidth;
 }
-void                                    AdaptationSet::SetMinBandwidth                  (uint32_t minBandwidth)
+void                                    AdaptationSet::SetMinBandwidth                  (uint32_t aMinBandwidth)
 {
-    this->minBandwidth = minBandwidth;
+    this->minBandwidth = aMinBandwidth;
 }
 uint32_t                                AdaptationSet::GetMaxBandwidth                  ()  const
 {
     return this->maxBandwidth;
 }
-void                                    AdaptationSet::SetMaxBandwidth                  (uint32_t maxBandwidth)
+void                                    AdaptationSet::SetMaxBandwidth                  (uint32_t aMaxBandwidth)
 {
-    this->maxBandwidth = maxBandwidth;
+    this->maxBandwidth = aMaxBandwidth;
 }
 uint32_t                                AdaptationSet::GetMinWidth                      ()  const
 {
     return this->minWidth;
 }
-void                                    AdaptationSet::SetMinWidth                      (uint32_t minWidth)
+void                                    AdaptationSet::SetMinWidth                      (uint32_t aMinWidth)
 {
-    this->minWidth = minWidth;
+    this->minWidth = aMinWidth;
 }
 uint32_t                                AdaptationSet::GetMaxWidth                      ()  const
 {
     return this->maxWidth;
 }
-void                                    AdaptationSet::SetMaxWidth                      (uint32_t maxWidth)
+void                                    AdaptationSet::SetMaxWidth                      (uint32_t aMaxWidth)
 {
-    this->maxWidth = maxWidth;
+    this->maxWidth = aMaxWidth;
 }
 uint32_t                                AdaptationSet::GetMinHeight                     ()  const
 {
     return this->minHeight;
 }
-void                                    AdaptationSet::SetMinHeight                     (uint32_t minHeight)
+void                                    AdaptationSet::SetMinHeight                     (uint32_t aMinHeight)
 {
-    this->minHeight = minHeight;
+    this->minHeight = aMinHeight;
 }
 uint32_t                                AdaptationSet::GetMaxHeight                     ()  const
 {
     return this->maxHeight;
 }
-void                                    AdaptationSet::SetMaxHeight                     (uint32_t maxHeight)
+void                                    AdaptationSet::SetMaxHeight                     (uint32_t aMaxHeight)
 {
-    this->maxHeight = maxHeight;
+    this->maxHeight = aMaxHeight;
 }
 const std::string&                      AdaptationSet::GetMinFramerate                  ()  const
 {
     return this->minFramerate;
 }
-void                                    AdaptationSet::SetMinFramerate                  (const std::string& minFramerate)
+void                                    AdaptationSet::SetMinFramerate                  (const std::string& aMinFramerate)
 {
-    this->minFramerate = minFramerate;
+    this->minFramerate = aMinFramerate;
 }
 const std::string&                      AdaptationSet::GetMaxFramerate                  ()  const
 {
     return this->maxFramerate;
 }
-void                                    AdaptationSet::SetMaxFramerate                  (const std::string& maxFramerate)
+void                                    AdaptationSet::SetMaxFramerate                  (const std::string& aMaxFramerate)
 {
-    this->maxFramerate = maxFramerate;
+    this->maxFramerate = aMaxFramerate;
 }
 bool                                    AdaptationSet::SegmentAlignmentIsBoolValue      () const
 {
@@ -283,16 +283,16 @@ uint32_t                                AdaptationSet::GetSegmentAligment       
 {
     return this->segmentAlignment;
 }
-void                                    AdaptationSet::SetSegmentAlignment              (const std::string& segmentAlignment)
+void                                    AdaptationSet::SetSegmentAlignment              (const std::string& aSegmentAlignment)
 {
-    if (segmentAlignment == "true" || segmentAlignment == "True" || segmentAlignment == "TRUE") 
+    if (aSegmentAlignment == "true" || aSegmentAlignment == "True" || aSegmentAlignment == "TRUE")
     {
         this->segmentAlignmentIsBool = true;
         this->usesSegmentAlignment = true;
         return;
     }
     
-    if (segmentAlignment == "false" || segmentAlignment == "False" || segmentAlignment == "FALSE") 
+    if (aSegmentAlignment == "false" || aSegmentAlignment == "False" || aSegmentAlignment == "FALSE")
     {
         this->segmentAlignmentIsBool = true;
         this->usesSegmentAlignment = false;
@@ -300,18 +300,18 @@ void                                    AdaptationSet::SetSegmentAlignment      
     }
 
     this->segmentAlignmentIsBool = false;
-    this->segmentAlignment = strtoul(segmentAlignment.c_str(), NULL, 10);
+    this->segmentAlignment = strtoul(aSegmentAlignment.c_str(), NULL, 10);
 }
-void                                    AdaptationSet::SetSubsegmentAlignment           (const std::string& subsegmentAlignment)
+void                                    AdaptationSet::SetSubsegmentAlignment           (const std::string& aSubsegmentAlignment)
 {
-    if (subsegmentAlignment == "true" || subsegmentAlignment == "True" || subsegmentAlignment == "TRUE") 
+    if (aSubsegmentAlignment == "true" || aSubsegmentAlignment == "True" || aSubsegmentAlignment == "TRUE")
     {
         this->subsegmentAlignmentIsBool = true;
         this->usesSubsegmentAlignment = true;
         return;
     }
     
-    if (subsegmentAlignment == "false" || subsegmentAlignment == "False" || subsegmentAlignment == "FALSE") 
+    if (aSubsegmentAlignment == "false" || aSubsegmentAlignment == "False" || aSubsegmentAlignment == "FALSE")
     {
         this->subsegmentAlignmentIsBool = true;
         this->usesSubsegmentAlignment = false;
@@ -319,7 +319,7 @@ void                                    AdaptationSet::SetSubsegmentAlignment   
     }
 
     this->subsegmentAlignmentIsBool = false;
-    this->subsegmentAlignment = strtoul(subsegmentAlignment.c_str(), NULL, 10);
+    this->subsegmentAlignment = strtoul(aSubsegmentAlignment.c_str(), NULL, 10);
 }
 uint32_t                                AdaptationSet::GetSubsegmentAlignment           ()  const
 {
@@ -329,9 +329,9 @@ uint8_t                                 AdaptationSet::GetSubsegmentStartsWithSA
 {
     return this->subsegmentStartsWithSAP;
 }
-void                                    AdaptationSet::SetSubsegmentStartsWithSAP       (uint8_t subsegmentStartsWithSAP)
+void                                    AdaptationSet::SetSubsegmentStartsWithSAP       (uint8_t aSubsegmentStartsWithSAP)
 {
-    this->subsegmentStartsWithSAP = subsegmentStartsWithSAP;
+    this->subsegmentStartsWithSAP = aSubsegmentStartsWithSAP;
 }
 bool                                    AdaptationSet::GetBitstreamSwitching            () const
 {

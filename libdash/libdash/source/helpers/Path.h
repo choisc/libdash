@@ -21,7 +21,6 @@ namespace dash
         class Path
         {
             public:
-                static std::string              CombinePaths        (const std::string &path1, const std::string &path2);
                 static std::string              GetDirectoryPath    (const std::string &path);
                 static std::vector<std::string> Split               (const std::string &s, char delim);
                 static bool                     GetHostPortAndPath  (const std::string &url, std::string &host, size_t &port, std::string& path);

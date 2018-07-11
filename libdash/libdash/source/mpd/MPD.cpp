@@ -25,7 +25,8 @@ MPD::MPD    () :
         timeShiftBufferDepth(""),
         suggestedPresentationDelay(""),
         maxSegmentDuration(""),
-        maxSubsegmentDuration("")
+        maxSubsegmentDuration(""),
+        mpdPathBaseUrl(NULL)
 {
 }
 MPD::~MPD   ()
@@ -38,6 +39,10 @@ MPD::~MPD   ()
         delete(this->periods.at(i));
     for(size_t i = 0; i < this->baseUrls.size(); i++)
         delete(this->baseUrls.at(i));
+    //
+    for (size_t i = 0; i < this->httpTransactions.size(); i++)
+        delete(this->httpTransactions.at(i));
+    delete mpdPathBaseUrl;
 }
 
 const std::vector<IProgramInformation *>&   MPD::GetProgramInformations             () const 
@@ -76,121 +81,121 @@ const std::vector<IMetrics *>&              MPD::GetMetrics                     
 {
     return (std::vector<IMetrics *> &) this->metrics;
 }
-void                                        MPD::AddMetrics                         (Metrics *metrics)
+void                                        MPD::AddMetrics                         (Metrics *ametrics)
 {
-    this->metrics.push_back(metrics);
+    this->metrics.push_back(ametrics);
 }
 const std::string&                          MPD::GetId                              ()  const
 {
     return this->id;
 }
-void                                        MPD::SetId                              (const std::string& id)
+void                                        MPD::SetId                              (const std::string& aid)
 {
-    this->id = id;
+    this->id = aid;
 }
 const std::vector<std::string>&             MPD::GetProfiles                        ()  const
 {
     return this->profiles;
 }
-void                                        MPD::SetProfiles                        (const std::string& profiles)
+void                                        MPD::SetProfiles                        (const std::string& aprofiles)
 {
-    dash::helpers::String::Split(profiles, ',', this->profiles);
+    dash::helpers::String::Split(aprofiles, ',', this->profiles);
 }
 const std::string&                          MPD::GetType                            ()  const
 {
     return this->type;
 }
-void                                        MPD::SetType                            (const std::string& type)
+void                                        MPD::SetType                            (const std::string& atype)
 {
-    this->type = type;
+    this->type = atype;
 }
 const std::string&                          MPD::GetAvailabilityStarttime           ()  const
 {
     return this->availabilityStarttime;
 }
-void                                        MPD::SetAvailabilityStarttime           (const std::string& availabilityStarttime)
+void                                        MPD::SetAvailabilityStarttime           (const std::string& aavailabilityStarttime)
 {
-    this->availabilityStarttime = availabilityStarttime;
+    this->availabilityStarttime = aavailabilityStarttime;
 }
 const std::string&                          MPD::GetAvailabilityEndtime             ()  const
 {
     return this->availabilityEndtime;
 }
-void                                        MPD::SetAvailabilityEndtime             (const std::string& availabilityEndtime)
+void                                        MPD::SetAvailabilityEndtime             (const std::string& aavailabilityEndtime)
 {
-    this->availabilityEndtime = availabilityEndtime;
+    this->availabilityEndtime = aavailabilityEndtime;
 }
 const std::string&                          MPD::GetMediaPresentationDuration       ()  const
 {
     return this->mediaPresentationDuration;
 }
-void                                        MPD::SetMediaPresentationDuration       (const std::string& mediaPresentationDuration)
+void                                        MPD::SetMediaPresentationDuration       (const std::string& amediaPresentationDuration)
 {
-    this->mediaPresentationDuration = mediaPresentationDuration;
+    this->mediaPresentationDuration = amediaPresentationDuration;
 }
 const std::string&                          MPD::GetMinimumUpdatePeriod             ()  const
 {
     return this->minimumUpdatePeriod;
 }
-void                                        MPD::SetMinimumUpdatePeriod             (const std::string& minimumUpdatePeriod)
+void                                        MPD::SetMinimumUpdatePeriod             (const std::string& aminimumUpdatePeriod)
 {
-    this->minimumUpdatePeriod = minimumUpdatePeriod;
+    this->minimumUpdatePeriod = aminimumUpdatePeriod;
 }
 const std::string&                          MPD::GetMinBufferTime                   ()  const
 {
     return this->minBufferTime;
 }
-void                                        MPD::SetMinBufferTime                   (const std::string& minBufferTime)
+void                                        MPD::SetMinBufferTime                   (const std::string& aminBufferTime)
 {
-    this->minBufferTime = minBufferTime;
+    this->minBufferTime = aminBufferTime;
 }
 const std::string&                          MPD::GetTimeShiftBufferDepth            ()  const
 {
     return this->timeShiftBufferDepth;
 }
-void                                        MPD::SetTimeShiftBufferDepth            (const std::string& timeShiftBufferDepth)
+void                                        MPD::SetTimeShiftBufferDepth            (const std::string& atimeShiftBufferDepth)
 {
-    this->timeShiftBufferDepth = timeShiftBufferDepth;
+    this->timeShiftBufferDepth = atimeShiftBufferDepth;
 }
 const std::string&                          MPD::GetSuggestedPresentationDelay      ()  const
 {
     return this->suggestedPresentationDelay;
 }
-void                                        MPD::SetSuggestedPresentationDelay      (const std::string& suggestedPresentationDelay)
+void                                        MPD::SetSuggestedPresentationDelay      (const std::string& asuggestedPresentationDelay)
 {
-    this->suggestedPresentationDelay = suggestedPresentationDelay;
+    this->suggestedPresentationDelay = asuggestedPresentationDelay;
 }
 const std::string&                          MPD::GetMaxSegmentDuration              ()  const
 {
     return this->maxSegmentDuration;
 }
-void                                        MPD::SetMaxSegmentDuration              (const std::string& maxSegmentDuration)
+void                                        MPD::SetMaxSegmentDuration              (const std::string& amaxSegmentDuration)
 {
-    this->maxSegmentDuration = maxSegmentDuration;
+    this->maxSegmentDuration = amaxSegmentDuration;
 }
 const std::string&                          MPD::GetMaxSubsegmentDuration           ()  const
 {
     return this->maxSubsegmentDuration;
 }
-void                                        MPD::SetMaxSubsegmentDuration           (const std::string& maxSubsegmentDuration)
+void                                        MPD::SetMaxSubsegmentDuration           (const std::string& amaxSubsegmentDuration)
 {
-    this->maxSubsegmentDuration = maxSubsegmentDuration;
+    this->maxSubsegmentDuration = amaxSubsegmentDuration;
 }
 IBaseUrl*                                   MPD::GetMPDPathBaseUrl                  ()  const
 {
     return this->mpdPathBaseUrl;
 }
-void                                        MPD::SetMPDPathBaseUrl                  (BaseUrl *mpdPath)
+void                                        MPD::SetMPDPathBaseUrl                  (BaseUrl *ampdPath)
 {
-    this->mpdPathBaseUrl = mpdPath;
+    this->mpdPathBaseUrl = ampdPath;
 }
 uint32_t                                    MPD::GetFetchTime                       ()  const
 {
     return this->fetchTime;
 }
-void                                        MPD::SetFetchTime                       (uint32_t fetchTimeInSec)
+void                                        MPD::SetFetchTime                       (uint32_t afetchTimeInSec)
 {
-    this->fetchTime = fetchTimeInSec;
+    this->fetchTime = afetchTimeInSec;
 }
 
 
@@ -198,15 +203,15 @@ const std::vector<ITCPConnection *>&        MPD::GetTCPConnectionList    () cons
 {
     return (std::vector<ITCPConnection *> &) this->tcpConnections;
 }
-void                                        MPD::AddTCPConnection        (TCPConnection *tcpConn)
+void                                        MPD::AddTCPConnection        (TCPConnection *atcpConn)
 {
-    this->tcpConnections.push_back(tcpConn);
+    this->tcpConnections.push_back(atcpConn);
 }
 const std::vector<IHTTPTransaction *>&      MPD::GetHTTPTransactionList  () const
 {
     return (std::vector<IHTTPTransaction *> &) this->httpTransactions;
 }
-void                                        MPD::AddHTTPTransaction      (HTTPTransaction *httpTransAct)
+void                                        MPD::AddHTTPTransaction      (HTTPTransaction *ahttpTransAct)
 {
-    this->httpTransactions.push_back(httpTransAct);
+    this->httpTransactions.push_back(ahttpTransAct);
 }

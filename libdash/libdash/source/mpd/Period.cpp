@@ -50,82 +50,82 @@ ISegmentBase*                       Period::GetSegmentBase          ()  const
 {
     return this->segmentBase;
 }
-void                                Period::SetSegmentBase          (SegmentBase *segmentBase)
+void                                Period::SetSegmentBase          (SegmentBase *asegmentBase)
 {
-    this->segmentBase = segmentBase;
+    this->segmentBase = asegmentBase;
 }
 ISegmentList*                       Period::GetSegmentList          ()  const
 {
     return this->segmentList;
 }
-void                                Period::SetSegmentList          (SegmentList *segmentList)
+void                                Period::SetSegmentList          (SegmentList *asegmentList)
 {
-    this->segmentList = segmentList;
+    this->segmentList = asegmentList;
 }
 ISegmentTemplate*                   Period::GetSegmentTemplate      ()  const
 {
     return this->segmentTemplate;
 }
-void                                Period::SetSegmentTemplate      (SegmentTemplate *segmentTemplate) 
+void                                Period::SetSegmentTemplate      (SegmentTemplate *asegmentTemplate) 
 {
-    this->segmentTemplate = segmentTemplate;
+    this->segmentTemplate = asegmentTemplate;
 }
 const std::vector<IAdaptationSet*>& Period::GetAdaptationSets       () const
 {
     return (std::vector<IAdaptationSet*> &) this->adaptationSets;
 }
-void                                Period::AddAdaptationSet        (AdaptationSet *adaptationSet)
+void                                Period::AddAdaptationSet        (AdaptationSet *aadaptationSet)
 {
-    if(adaptationSet != NULL)
-        this->adaptationSets.push_back(adaptationSet);
+    if(aadaptationSet != NULL)
+        this->adaptationSets.push_back(aadaptationSet);
 }
 const std::vector<ISubset *>&       Period::GetSubsets              () const
 {
     return (std::vector<ISubset *> &) this->subsets;
 }
-void                                Period::AddSubset               (Subset *subset)
+void                                Period::AddSubset               (Subset *asubset)
 {
-    this->subsets.push_back(subset);
+    this->subsets.push_back(asubset);
 }
 const std::string&                  Period::GetXlinkHref            ()  const
 {
     return this->xlinkHref;
 }
-void                                Period::SetXlinkHref            (const std::string& xlinkHref)
+void                                Period::SetXlinkHref            (const std::string& axlinkHref)
 {
-    this->xlinkHref = xlinkHref;
+    this->xlinkHref = axlinkHref;
 }
 const std::string&                  Period::GetXlinkActuate         ()  const
 {
     return this->xlinkActuate;
 }
-void                                Period::SetXlinkActuate         (const std::string& xlinkActuate)
+void                                Period::SetXlinkActuate         (const std::string& axlinkActuate)
 {
-    this->xlinkActuate = xlinkActuate;
+    this->xlinkActuate = axlinkActuate;
 }
 const std::string&                  Period::GetId                   ()  const
 {
     return this->id;
 }
-void                                Period::SetId                   (const std::string& id)
+void                                Period::SetId                   (const std::string& aid)
 {
-    this->id = id;
+    this->id = aid;
 }
 const std::string&                  Period::GetStart                ()  const
 {
     return this->start;
 }
-void                                Period::SetStart                (const std::string& start)
+void                                Period::SetStart                (const std::string& astart)
 {
-    this->start = start;
+    this->start = astart;
 }
 const std::string&                  Period::GetDuration             ()  const
 {
     return this->duration;
 }
-void                                Period::SetDuration             (const std::string& duration)
+void                                Period::SetDuration             (const std::string& aduration)
 {
-    this->duration = duration;
+    this->duration = aduration;
 }
 bool                                Period::GetBitstreamSwitching   ()  const
 {
