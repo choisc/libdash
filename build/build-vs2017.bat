@@ -11,7 +11,7 @@ cmake --build . --config Release -- /m
 
 IF NOT EXIST ..\..\Lib\Windows\Debug\VS2017 md ..\..\Lib\Windows\Debug\VS2017
 copy Debug\dash*.* ..\..\Lib\Windows\Debug\VS2017\
-IF NOT EXIST ..\..\Lib\Windows\Release\VS2017 md ..\..\Lib\Windows\ReleaseVS2017
+IF NOT EXIST ..\..\Lib\Windows\Release\VS2017 md ..\..\Lib\Windows\Release\VS2017
 copy Release\dash*.* ..\..\Lib\Windows\Release\VS2017\
 cd ..
 
