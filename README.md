@@ -3,6 +3,8 @@
 
 libdash is the **official reference software of the ISO/IEC MPEG-DASH standard** and is an open-source library that provides an object orient (OO) interface to the MPEG-DASH standard, developed by [Bitmovin](http://www.bitmovin.com).
 
+This fork of the libdash contains a subset of the original repository, supporting only DASH manifest (MPD) parsing functionality. Further, the MPD parsing has been somewhat updated from the original repository, including bug fixes and operational changes.
+
 ## by bitmovin
 <a href="https://www.bitmovin.com"><img src="https://ox4zindgwb3p1qdp2lznn7zb-wpengine.netdna-ssl.com/wp-content/uploads/2016/01/bitmovin-standard-2017.png" width="400px"/></a>
 
