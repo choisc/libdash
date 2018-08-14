@@ -24,6 +24,7 @@ Encode your content with the same technology as Netflix and YouTube in a way tha
 In addition to the public available open source resources and the mailing list support, we provide professional development and integration services, consulting, high-quality streaming componentes/logics, relicensing of libdash etc. based on your individual needs. Feel free to contact us via <a href="mailto:sales@bitmovin.com">sales@bitmovin.com</a> so we can discuss your requirements and provide you an offer.
 
 ## Architecture
+Note: the following description is for the original libdash project. This fork only contains a subset of the original functionality.
 The general architecture of <a href="https://bitmovin.com/dynamic-adaptive-streaming-http-mpeg-dash/">MPEG-DASH</a> is depicted in the figure below where the orange parts are standardized, i.e., the MPD and segment formats. The delivery of the MPD, the control heuristics and the media player itself, are depicted in blue in the figure. These parts are not standardized and allow the differentiation of industry solutions due to the performance or different features that can be integrated at that level. libdash is also depicted in blue and encapsulates the MPD parsing and HTTP part, which will be handled by the library. Therefore the library provides interfaces for the DASH Streaming Control and the Media Player to access MPDs and downloadable media segments. The download order of such media segments will not be handled by the library this is left to the DASH Streaming Control, which is an own component in this architecture but it could also be included in the Media Player.
 In a typical deployment, a DASH server provides segments in several bitrates and resolutions. The client initially receives the MPD through libdash which provides a convenient object oriented interface to that MPD. The MPD contains the temporal relationships for the various qualities and segments. Based on that information the client can download individual media segments through libdash at any point in time. Therefore varying bandwidth conditions can be handled by switching to the corresponding quality level at segment boundaries in order to provide a smooth streaming experience. This adaptation is not part of libdash and the MPEG-DASH standard and will be left to the application which is using libdash.
 
@@ -36,6 +37,7 @@ The doxygen documentation availalbe in the repo.
 You can find the latest sources and binaries on github.
 
 ## How to use
+Note: the following instructions are for the original libdash project. This fork only creates a library.
 
 ### Windows
 1. Download the tarball or clone the repository from github (git://github.com/bitmovin/libdash.git)
@@ -57,6 +59,8 @@ You can find the latest sources and binaries on github.
 10. ./libdash_networkpart_test
 
 #### QTSamplePlayer
+Note: the following instructions are for the original libdash project. This fork only creates a library.
+
 Prerequisite: libdash must be built as described in the previous section.
 
 1. sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
