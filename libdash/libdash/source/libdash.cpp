@@ -25,61 +25,6 @@
 #include "manager/DASHManager.h"
 
 using namespace dash;
-#ifdef USE_LIBXML
-
-#if _MSC_VER && _DEBUG
-//pipe libxml errors to output debugstring on windows
-//on other systems they will be sent to stderr (and /dev/null most likely)
-#include <stdarg.h>
-extern "C"
-{
-    void __cdecl handler(void * ctx, const char * format, ...)
-    {
-        va_list copy;
-        va_start(copy, format);
-        char buf2[512] = { 0 };
-        char buf[sizeof(buf2)] = { 0 };
-        ::vsnprintf(buf, sizeof(buf), format, copy);
-        _snprintf(buf2, sizeof(buf2)-1, "[LibXML %p:%x] %s", ctx, GetCurrentThreadId(), buf);
-        //add newline if missing..
-        size_t pos = strlen(buf2);
-        if (pos >= sizeof(buf2)) pos -= 2;
-        if (buf2[pos - 1] != '\n')
-        {
-            buf2[pos - 1] = '\n';
-            buf2[pos] = 0;
-        }
-        OutputDebugStringA(buf2);
-        va_end(copy);
-    }
-}
-static xmlGenericErrorFunc genericFunc;
-#endif
-static class cleanup
-{
-public:
-    cleanup()
-    {        
-#if _MSC_VER && _DEBUG
-        //pipe libxml errors to output debugstring on windows
-        //on other systems they will be sent to stderr (and /dev/null most likely)
-        genericFunc = handler;
-        initGenericErrorDefaultFunc(&genericFunc);
-#endif
-        xmlInitParser();
-#ifndef NO_CURL
-        curl_global_init(CURL_GLOBAL_ALL);
-#endif
-    }
-    ~cleanup()
-    {
-#ifndef NO_CURL
-        curl_global_cleanup();
-#endif
-        xmlCleanupParser();
-    }
-} gXmlLibDummy;
-#endif
 
 DASH_EXPORT void __cdecl InitializeLibDash()
 {

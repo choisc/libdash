@@ -15,11 +15,7 @@
 #include "config.h"
 
 #include "Node.h"
-#ifdef USE_LIBXML
-#include <libxml/xmlreader.h>
-#else
 #include "xml.h"
-#endif
 #include "../helpers/Path.h"
 
 namespace dash
